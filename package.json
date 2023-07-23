@@ -1,0 +1,26 @@
+{
+  "name": "glassix-js",
+  "version": "1.0.0",
+  "description": "Glassix Client API",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Glassix/glassix-js.git"
+  },
+  "keywords": [
+    "glassix",
+    "api"
+  ],
+  "author": "Glassix Solutions LTD",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Glassix/glassix-js/issues"
+  },
+  "homepage": "https://github.com/Glassix/glassix-js#readme",
+  "dependencies": {
+    "axios": "^1.4.0"
+  }
+}
