@@ -1,13 +1,19 @@
 # glassix-js
 Javascript and Node.js client library SDK for the Glassix REST API
 
-**Glassix client API**
 
-**Installation:**
+[![NPM version](https://badgen.net/npm/v/glassix-js)](https://www.npmjs.com/package/glassix-js)
+[![NPM downloads](https://badgen.net/npm/dm/glassix-js)](https://www.npmjs.com/package/glassix-js)
 
-Something about the npm package and how to implement it in the project.
+## Installation:
 
-**Usage:**
+[NPM](https://www.npmjs.com/package/glassix-js):
+
+```sh
+npm i glassix-js
+```
+
+## Usage:
 
 For using Glassix API you need prepare next variables:
 
