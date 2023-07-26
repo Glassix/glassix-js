@@ -4,7 +4,7 @@
   "description": "Glassix Client API",
   "main": "index.js",
   "scripts": {
-    "version-update": "npm version patch --force"
+    "version-update": "npm version patch --force && git add . && git commit -am \"new version update\" && git push"
   },
   "repository": {
     "type": "git",
