@@ -9,8 +9,8 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@master
+#       - name: Checkout
+#         uses: actions/checkout@master
       - name: npm version and publish
         uses: geemanjs/conventional-changelog-npm-publish@1.0.0
         env:
