@@ -11,24 +11,17 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@master
-      - name: Bump version
-        run: |
-          git config --global user.name 'Roman-Glassix'
-          git config --global user.email 'roman-glassix@users.noreply.github.com'
-          npm run version-update
-#       - name: Commit changes
-#         run: git commit -am "version update"
-#       - name: Push changes
-#         run: git push
+      - name: npm version and publish
+        uses: geemanjs/conventional-changelog-npm-publish@1.0.0
+#         with:
+          # After the version is incremented - the user that makes the commit
+#           author_email: 'roman-glassix@users.noreply.github.com'
+          # After the version is incremented - the user that makes the commit
+#           author_name: 'Roman-Glassix'
+          # Commit message - [VERSION_TYPE] is replaced with either patch, minor or major
+#           commit_message: # optional, default is Bumping [VERSION_TYPE] version
+#       - name: Bump version
 #         run: |
 #           git config --global user.name 'Roman-Glassix'
 #           git config --global user.email 'roman-glassix@users.noreply.github.com'
 #           npm run version-update
-#           git commit -am "Automated report"
-#           git push
-#       - name: Commit
-#         uses: peter-evans/create-pull-request@v1
-#         with:
-#           token: ${{ secrets.GITHUB_TOKEN }}
-#           commit-message: Bump version
-#           title: Bump version
