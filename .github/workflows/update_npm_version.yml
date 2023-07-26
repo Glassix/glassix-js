@@ -11,10 +11,11 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@master
-      - name: Bump version
-        run: npm run version-update
-      - name: Commit
+#       - name: Bump version
+#         run: npm run version-update
+      - name: Bump version and Commit
         run: |
+          npm run version-update
           git config --global user.name 'Roman-Glassix'
           git config --global user.email 'roman-glassix@users.noreply.github.com'
           git commit -am "Automated report"
