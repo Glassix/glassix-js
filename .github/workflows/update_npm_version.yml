@@ -9,12 +9,19 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-#       - name: Checkout
-#         uses: actions/checkout@master
-      - name: npm version and publish
-        uses: geemanjs/conventional-changelog-npm-publish@1.0.0
-        env:
-          NODE_AUTH_TOKEN: ${{secrets.NPM_AUTH_TOKEN}}
+      - name: Checkout
+        uses: actions/checkout@master
+      - name: node
+        uses: actions/setup-node@v2
+        with:
+            node-version: 12
+            registry-url: https://registry.npmjs.org
+      - name: npm-version-bump
+        uses: neg4n/version-bump@1.0.0
+#       - name: npm version and publish
+#         uses: geemanjs/conventional-changelog-npm-publish@1.0.0
+#         env:
+#           NODE_AUTH_TOKEN: ${{secrets.NPM_AUTH_TOKEN}}
 #         with:
           # After the version is incremented - the user that makes the commit
 #           author_email: 'roman-glassix@users.noreply.github.com'
