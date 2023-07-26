@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "version": "npm version minor"
+    "version": "git add . && git commit -am \"new version\" && npm version patch"
   },
   "repository": {
     "type": "git",
@@ -23,7 +23,6 @@
   "homepage": "https://github.com/Glassix/glassix-js#readme",
   "dependencies": {
     "axios": "^1.4.0",
-    "eslint": "^8.45.0",
-    "version": "^0.1.2"
+    "eslint": "^8.45.0"
   }
 }
