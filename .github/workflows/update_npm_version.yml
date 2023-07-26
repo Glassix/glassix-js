@@ -12,3 +12,5 @@ jobs:
 
       - name: Bump Version
         run: npm run version-update
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
