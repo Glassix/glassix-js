@@ -1,5 +1,5 @@
 {
-  "name": "glassix-js",
+  "name": "glassix",
   "version": "1.0.7",
   "description": "Glassix Client API",
   "main": "index.js",

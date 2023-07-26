@@ -1,16 +1,15 @@
-# glassix-js
+# glassix
 Javascript and Node.js client library SDK for the Glassix REST API
 
-
-[![NPM version](https://badgen.net/npm/v/glassix-js)](https://www.npmjs.com/package/glassix-js)
-[![NPM downloads](https://badgen.net/npm/dm/glassix-js)](https://www.npmjs.com/package/glassix-js)
+[![NPM version](https://badgen.net/npm/v/glassix)](https://www.npmjs.com/package/glassix)
+[![NPM downloads](https://badgen.net/npm/dm/glassix)](https://www.npmjs.com/package/glassix)
 
 ## Installation:
 
-[NPM](https://www.npmjs.com/package/glassix-js):
+[NPM](https://www.npmjs.com/package/glassix):
 
 ```sh
-npm i glassix-js
+npm i glassix
 ```
 
 ## Usage:
@@ -18,23 +17,22 @@ npm i glassix-js
 For using Glassix API you need prepare next variables:
 
 ```javascript
-const workspace = 'YOUR\_WORKSPACE';
+const workspace = 'YOUR_WORKSPACE';
 
-const apiKey = 'YOUR\_API\_KEY';
+const apiKey = 'YOUR_API_KEY';
 
-const apiSecret = 'YOUR\_API\_SECRET';
+const apiSecret = 'YOUR_API_SECRET';
 
-const apiVersion = 'API\_VERSION\_YOU\_NEED';
+const apiVersion = 'API_VERSION_YOU_NEED';
 
-const userName = 'YOUR\_USER\_NAME';
+const userName = 'YOUR_USER_NAME';
 
-const domain = 'YOUR\_DOMAIN';
+const domain = 'YOUR_DOMAIN';
 ```
 
 **Workspace** - this is your subdomain.
 
 For example in <https://app.glassix.com/> subdomain is “app”.
-
 
 To obtain your **API key** and **API secret**:
 
@@ -45,9 +43,7 @@ Actual information about the **API version** you can find [here](https://docs.gl
 
 “1.2” API version by default.
 
-
 **User name** - this is the user’s email address that uses Glassix API.
-
 
 **Domain** - this is your domain.
 
@@ -57,11 +53,13 @@ For example in <https://app.glassix.com/> domain is “glassix.com”.
 
 After that you can invoke Glassix Client:
 
+```javascript
 const client = new GlassixClient(workspace, apiKey, apiSecret, apiVersion, userName, domain);
+```
 
 And use Glassix API:
 
-
+```javascript
 const token = await client.users.getStatus();
 
 const ticketId = 111111;
@@ -71,10 +69,11 @@ const ticket = await client.tickets.get(ticketId);
 const params = ['Sales', 'Excel'];
 
 const result = await client.tickets.addTags(ticket.ticketId, params);
+```
 
-**Endpoints:**
+## Endpoints:
 
-**getToken:**
+### [getToken](https://docs.glassix.com/reference/access-token):
 
 An Access Token is a short-lived credential used to authenticate your application to Glassix.
 
@@ -84,32 +83,32 @@ The access token contains the user and the department.
 After obtaining the access token, you must pass it in every request, in the "Authorization" header. Authorization: Bearer TOKEN
 
 Variables:
-
-- userName (string) required - Users' Email address. More information [here](https://docs.glassix.com/reference/access-token).
+- userName (string) required - Users' Email address.
 
 Example:
-
-const userName = 'USER\_EMAIL\_ADDRESS';
+```javascript
+const userName = 'USER_EMAIL_ADDRESS';
 const result = await client.getToken(userName);
+```
 
-**tickets:**
+### tickets:
 
-- **create:**
-  This endpoint creates a new ticket with participant/s and fields.
+#### [create](https://docs.glassix.com/reference/create-ticket):
+
+This endpoint creates a new ticket with participant/s and fields.
 
 After creation, you can send messages on behalf of users. You don't need to include the ticket's owner as a participant. Learn more about how to create a ticket in [this guide](https://docs.glassix.com/docs/create-a-ticket-using-the-api).
 
 Variables:
-
-- payload (object) required - New ticket data. More information [here](https://docs.glassix.com/reference/create-ticket).
-
+- payload (object) required - New ticket data.
 
 Example:
-const payload = {NEW\_TICKET\_DATA};
-
+```javascript
+const payload = {NEW_TICKET_DATA};
 const result = await client.tickets.create(payload);
+```
 
-- **get:**
+**get:**
   This endpoint returns a ticket by id.
 
 

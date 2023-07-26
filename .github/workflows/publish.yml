@@ -20,9 +20,9 @@ jobs:
         uses: bcomnes/npm-bump@v2.2.1
         with:
           # The email address used to create the version commit with.
-          git_email: 'roman-glassix@users.noreply.github.com'
+          git_email: 'yoad-rashty@users.noreply.github.com'
           # The name to use for the version commit. e.g. github.actor
-          git_username: 'Roman-Glassix'
+          git_username: 'yoad-rashty'
           # The version bump type to perform (e.g. major, minor, patch). See npm version docs for more info.  Pass this as an interactive variable.
           newversion: 'patch'
           # Run git push --follow-tags after running npm version.  Enable this if you dont configure a prepublishOnly hook that pushes git commits.
