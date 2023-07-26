@@ -16,18 +16,10 @@ jobs:
         with:
             node-version: 12
             registry-url: https://registry.npmjs.org
-      - name: NPM-Version
+      - name: npm-version-bump
         # You may pin to the exact commit or the version.
-        # uses: Reedyuk/NPM-Version@805800379b213c9193ede2c7a7f14a1a99e4d10b
-        uses: Reedyuk/NPM-Version@1.2.1
-        with:
-          # This will be the version you want to set in the package.json file
-          version: 'patch'
-          # The location of the package.json file, defaults to current directory.
-#           package: # default is ./
-          # If set to true, the version will be tagged and committed. Same behaviour as git-tag-version
-#           git-tag-version: # optional
-#       - name: npm version and publish
+        # uses: neg4n/version-bump@84e594b503a3ddf9b07a9bed9438db8c8597ee84
+        uses: neg4n/version-bump@1.0.0
 #         uses: geemanjs/conventional-changelog-npm-publish@1.0.0
 #         env:
 #           NODE_AUTH_TOKEN: ${{secrets.NPM_AUTH_TOKEN}}
