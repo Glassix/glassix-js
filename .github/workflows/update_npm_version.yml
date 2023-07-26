@@ -1,4 +1,4 @@
-name: Bump Version
+name: Update Version and Publish
 on:
   push:
     branches:
@@ -9,23 +9,21 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@master
-      - name: node
-        uses: actions/setup-node@v2
-        with:
-            node-version: 12
-            registry-url: https://registry.npmjs.org
-      - name: npm bump
-        # You may pin to the exact commit or the version.
-        # uses: bcomnes/npm-bump@b57939f35cd2f4c813f8c79239961755023df57a
+#       - name: Checkout
+#         uses: actions/checkout@master
+#       - name: node
+#         uses: actions/setup-node@v2
+#         with:
+#             node-version: 12
+#             registry-url: https://registry.npmjs.org
+      - name: Update NPM version and Publish to npmjs.org
         uses: bcomnes/npm-bump@v2.2.1
         with:
           # The email address used to create the version commit with.
           git_email: 'roman-glassix@users.noreply.github.com'
           # The name to use for the version commit. e.g. github.actor
           git_username: 'Roman-Glassix'
-          # The version bump type to perform (e.g. major, minor, path). See npm version docs for more info.  Pass this as an interactive variable.
+          # The version bump type to perform (e.g. major, minor, patch). See npm version docs for more info.  Pass this as an interactive variable.
           newversion: 'patch'
           # Run git push --follow-tags after running npm version.  Enable this if you dont configure a prepublishOnly hook that pushes git commits.
           push_version_commit: true
@@ -35,20 +33,3 @@ jobs:
           github_token: ${{secrets.GITHUB_TOKEN}}
           # An npm token scoped for publishing.  Used to create the release.
           npm_token: ${{secrets.NPM_AUTH_TOKEN}}
-          
-#         uses: geemanjs/conventional-changelog-npm-publish@1.0.0
-#         env:
-#           NODE_AUTH_TOKEN: ${{secrets.NPM_AUTH_TOKEN}}
-#         with:
-          # After the version is incremented - the user that makes the commit
-#           author_email: 'roman-glassix@users.noreply.github.com'
-          # After the version is incremented - the user that makes the commit
-#           author_name: 'Roman-Glassix'
-          # Commit message - [VERSION_TYPE] is replaced with either patch, minor or major
-#           commit_message: # optional, default is Bumping [VERSION_TYPE] version
-
-#       - name: Bump version
-#         run: |
-#           git config --global user.name 'Roman-Glassix'
-#           git config --global user.email 'roman-glassix@users.noreply.github.com'
-#           npm run version-update
