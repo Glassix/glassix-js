@@ -1,28 +1,43 @@
-name: Bump Version
-on:
-  push:
-    branches:
-      - main
-permissions:
-  contents: write
+on: push
+name: Update Version
 jobs:
-  build:
+  createPullRequest:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@master
-#       - name: Bump version
-#         run: npm run version-update
-      - name: Bump version and Commit
-        run: |
-          npm run version-update
-          git config --global user.name 'Roman-Glassix'
-          git config --global user.email 'roman-glassix@users.noreply.github.com'
-          git commit -am "Automated report"
-          git push
-#       - name: Commit
-#         uses: peter-evans/create-pull-request@v1
-#         with:
-#           token: ${{ secrets.GITHUB_TOKEN }}
-#           commit-message: Bump version
-#           title: Bump version
+      - uses: actions/checkout@v1
+      - name: Bump version
+        run: npm version patch
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v1
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: Bump version
+          title: Bump version
+# name: Bump Version
+# on:
+#   push:
+#     branches:
+#       - main
+# permissions:
+#   contents: write
+# jobs:
+#   build:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: Checkout
+#         uses: actions/checkout@master
+# #       - name: Bump version
+# #         run: npm run version-update
+#       - name: Bump version and Commit
+#         run: |
+#           npm run version-update
+#           git config --global user.name 'Roman-Glassix'
+#           git config --global user.email 'roman-glassix@users.noreply.github.com'
+#           git commit -am "Automated report"
+#           git push
+# #       - name: Commit
+# #         uses: peter-evans/create-pull-request@v1
+# #         with:
+# #           token: ${{ secrets.GITHUB_TOKEN }}
+# #           commit-message: Bump version
+# #           title: Bump version
