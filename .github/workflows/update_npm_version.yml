@@ -11,7 +11,7 @@ jobs:
         uses: actions/checkout@master
 
       - name: Current Version Checkout
-        run: npm run version
+        run: npm run version-update
 
       - name: 'run version change'
         uses: ./
