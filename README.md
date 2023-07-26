@@ -17,6 +17,7 @@ npm i glassix-js
 
 For using Glassix API you need prepare next variables:
 
+```javascript
 const workspace = 'YOUR\_WORKSPACE';
 
 const apiKey = 'YOUR\_API\_KEY';
@@ -28,6 +29,7 @@ const apiVersion = 'API\_VERSION\_YOU\_NEED';
 const userName = 'YOUR\_USER\_NAME';
 
 const domain = 'YOUR\_DOMAIN';
+```
 
 **Workspace** - this is your subdomain.
 

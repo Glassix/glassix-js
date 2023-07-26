@@ -1,14 +1,34 @@
-name: "Bump Version on main"
+name: Bump Version
 on:
   push:
     branches:
-      - "main"
+      - main
+permissions:
+  contents: write
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@master
-
-      - name: Bump Version
-        run: npm run version-update
+      - name: Bump version
+        run: |
+          git config --global user.name 'Roman-Glassix'
+          git config --global user.email 'roman-glassix@users.noreply.github.com'
+          npm run version-update
+      - name: Commit changes
+        run: git commit -am "version update"
+      - name: Push changes
+        run: git push
+#         run: |
+#           git config --global user.name 'Roman-Glassix'
+#           git config --global user.email 'roman-glassix@users.noreply.github.com'
+#           npm run version-update
+#           git commit -am "Automated report"
+#           git push
+#       - name: Commit
+#         uses: peter-evans/create-pull-request@v1
+#         with:
+#           token: ${{ secrets.GITHUB_TOKEN }}
+#           commit-message: Bump version
+#           title: Bump version
