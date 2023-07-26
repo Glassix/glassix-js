@@ -16,10 +16,10 @@ jobs:
           git config --global user.name 'Roman-Glassix'
           git config --global user.email 'roman-glassix@users.noreply.github.com'
           npm run version-update
-      - name: Commit changes
-        run: git commit -am "version update"
-      - name: Push changes
-        run: git push
+#       - name: Commit changes
+#         run: git commit -am "version update"
+#       - name: Push changes
+#         run: git push
 #         run: |
 #           git config --global user.name 'Roman-Glassix'
 #           git config --global user.email 'roman-glassix@users.noreply.github.com'
