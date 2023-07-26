@@ -22,7 +22,7 @@ jobs:
         with:
           node-version: 12
       - name: "Automated Version Bump"
-        uses: "phips28/gh-action-bump-version@main"
+        uses: "phips28/gh-action-bump-version@master"
         with:
           tag-prefix: ''
       - name: "cat package.json"
