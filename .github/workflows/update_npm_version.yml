@@ -10,13 +10,5 @@ jobs:
       - name: Checkout
         uses: actions/checkout@master
 
-      - name: Current Version Checkout
+      - name: Bump Version
         run: npm run version-update
-
-      - name: 'run version change'
-        uses: ./
-        with:
-          version: '10.1.1'
-
-      - name: Current Version Checkout
-        run: npm run version
