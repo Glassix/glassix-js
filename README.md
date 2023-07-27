@@ -2,7 +2,7 @@
 Javascript and Node.js client library SDK for the Glassix REST API
 
 [![NPM version](https://badgen.net/npm/v/glassix)](https://www.npmjs.com/package/glassix)
-[![NPM downloads](https://badgen.net/npm/dm/glassix)](https://www.npmjs.com/package/glassix)
+[![NPM downloads](https://badgen.net/npm/dm/glassix?v)](https://www.npmjs.com/package/glassix)
 
 ## Installation:
 
