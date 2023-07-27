@@ -44,13 +44,14 @@ For example in <https://app.glassix.com/> domain is “glassix.com”.
 After that you can invoke Glassix Client:
 
 ```javascript
+import { GlassixCliient } from 'glassix'
 const client = new GlassixClient(workspace, apiKey, apiSecret, apiVersion, userName, domain);
 ```
 
 And use Glassix API:
 
 ```javascript
-const token = await client.users.getStatus();
+const status = await client.users.getStatus();
 const ticketId = 111111;
 const ticket = await client.tickets.get(ticketId);
 const params = ['Sales', 'Excel'];
