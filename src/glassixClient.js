@@ -42,7 +42,7 @@ import getAllCannedReplies from './API/cannedReplies';
 import sendInteractiveDocument from './API/interactiveDocuments';
 import sendProtocol from './API/protocols';
 import { audioLinkPhoneCall, endedPhoneCall, startedPhoneCall } from './API/phoneCalls';
-import {catchError} from "./helpers/catchError";
+import { catchError } from './helpers/catchError';
 
 class GlassixClient {
   constructor(workspace, apiKey, apiSecret, userName, domain, apiVersion) {

@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {catchError} from "../helpers/catchError";
+import { catchError } from '../helpers/catchError';
 
 // CANNED REPLIES ENDPOINTS
 const getAllCannedReplies = async (ctx) => {

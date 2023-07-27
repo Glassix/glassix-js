@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {catchError} from "../helpers/catchError";
+import { catchError } from '../helpers/catchError';
 
 // USERS ENDPOINTS
 export const getAllUsers = async (ctx) => {

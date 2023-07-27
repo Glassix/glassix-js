@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {catchError} from "../helpers/catchError";
+import { catchError } from '../helpers/catchError';
 
 // PHONE CALLS ENDPOINTS
 export const startedPhoneCall = async (ctx, ticketId, payload = {}) => {
