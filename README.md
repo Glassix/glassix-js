@@ -52,8 +52,10 @@ And use Glassix API:
 
 ```javascript
 const status = await client.users.getStatus();
+
 const ticketId = 111111;
 const ticket = await client.tickets.get(ticketId);
+
 const params = ['Sales', 'Excel'];
 const result = await client.tickets.addTags(ticket.ticketId, params);
 ```
