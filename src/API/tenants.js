@@ -1,4 +1,5 @@
 import axios from 'axios';
+import {catchError} from "../helpers/catchError";
 
 // TENANTS ENDPOINTS
 export const tenantIsOnline = async (ctx, params = {}) => {
@@ -7,10 +8,7 @@ export const tenantIsOnline = async (ctx, params = {}) => {
     const res = await axios.get(`${ctx.url}/tenants/isonline`, { headers, params });
     return res?.data;
   } catch (error) {
-    return {
-      statusCode: error?.response?.status,
-      message: error?.response?.data?.Message
-    };
+    catchError(error);
   }
 };
 
@@ -20,9 +18,6 @@ export const getTenantTags = async (ctx) => {
     const res = await axios.get(`${ctx.url}/tenants/gettags`, { headers });
     return res?.data;
   } catch (error) {
-    return {
-      statusCode: error?.response?.status,
-      message: error?.response?.data?.Message
-    };
+    catchError(error);
   }
 };

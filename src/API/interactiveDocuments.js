@@ -1,4 +1,5 @@
 import axios from 'axios';
+import {catchError} from "../helpers/catchError";
 
 // INTERACTIVE DOCUMENTS ENDPOINTS
 const sendInteractiveDocument = async (ctx, ticketId, payload = {}) => {
@@ -7,10 +8,7 @@ const sendInteractiveDocument = async (ctx, ticketId, payload = {}) => {
     const res = await axios.post(`${ctx.url}/interactivedocuments/send/${ticketId}`, payload, { headers });
     return res?.data;
   } catch (error) {
-    return {
-      statusCode: error?.response?.status,
-      message: error?.response?.data?.Message
-    };
+    catchError(error);
   }
 };
 

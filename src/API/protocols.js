@@ -1,4 +1,5 @@
 import axios from 'axios';
+import {catchError} from "../helpers/catchError";
 
 // PROTOCOLS ENDPOINTS
 const sendProtocol = async (ctx, payload = {}) => {
@@ -7,10 +8,7 @@ const sendProtocol = async (ctx, payload = {}) => {
     const res = await axios.post(`${ctx.url}/protocols/send`, payload, { headers });
     return res?.data;
   } catch (error) {
-    return {
-      statusCode: error?.response?.status,
-      message: error?.response?.data?.Message
-    };
+    catchError(error);
   }
 };
 
