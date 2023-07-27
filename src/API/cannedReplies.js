@@ -8,7 +8,7 @@ const getAllCannedReplies = async (ctx) => {
     const res = await axios.get(`${ctx.url}/cannedreplies/getall`, { headers });
     return res?.data;
   } catch (error) {
-    catchError(error);
+	return catchError(error);
   }
 };
 

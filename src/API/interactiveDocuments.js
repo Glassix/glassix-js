@@ -8,7 +8,7 @@ const sendInteractiveDocument = async (ctx, ticketId, payload = {}) => {
     const res = await axios.post(`${ctx.url}/interactivedocuments/send/${ticketId}`, payload, { headers });
     return res?.data;
   } catch (error) {
-    catchError(error);
+    return catchError(error);
   }
 };
 

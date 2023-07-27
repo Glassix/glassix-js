@@ -8,7 +8,7 @@ const sendProtocol = async (ctx, payload = {}) => {
     const res = await axios.post(`${ctx.url}/protocols/send`, payload, { headers });
     return res?.data;
   } catch (error) {
-    catchError(error);
+    return catchError(error);
   }
 };
 
