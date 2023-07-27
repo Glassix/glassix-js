@@ -44,8 +44,8 @@ For example in <https://app.glassix.com/> domain is “glassix.com”.
 After that you can invoke Glassix Client:
 
 ```javascript
-import { GlassixCliient } from 'glassix'
-const client = new GlassixClient(workspace, apiKey, apiSecret, apiVersion, userName, domain);
+import glassix from "glassix";
+const client = new glassix.GlassixClient(workspace, apiKey, apiSecret, userName, domain, apiVersion);
 ```
 
 And use Glassix API:
