@@ -57,17 +57,24 @@ class GlassixClient {
     this.tokenExpirationDate = null;
   }
 
-  async getToken(userName) {
-    const payload = {
-      apiKey: this.apiKey,
-      apiSecret: this.apiSecret,
-      userName: userName || this.userName,
-    };
-    const res = await axios.post(`${this.url}/token/get`, payload);
-    this.accessTokenData = res?.data;
-    this.tokenExpirationDate = new Date(Date.now() + (res?.data?.expires_in * 1000));
-    return res?.data;
-  }
+	async getToken(userName) {
+		try {
+			const payload = {
+				apiKey: this.apiKey,
+				apiSecret: this.apiSecret,
+				userName: userName || this.userName,
+			};
+			const res = await axios.post(`${this.url}/token/get`, payload);
+			this.accessTokenData = res?.data;
+			this.tokenExpirationDate = new Date(Date.now() + (res?.data?.expires_in * 1000));
+			return res?.data;
+		} catch (error) {
+			return {
+				statusCode: error?.response?.status,
+				message: error?.response?.data?.Message
+			};
+		}
+	}
 
   // eslint-disable-next-line class-methods-use-this
   async getRequestHeaders(ctx) {
