@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { catchError } from '../helpers/catchError';
+import catchError from '../helpers/catchError';
 
 // CANNED REPLIES ENDPOINTS
 const getAllCannedReplies = async (ctx) => {
@@ -8,7 +8,7 @@ const getAllCannedReplies = async (ctx) => {
     const res = await axios.get(`${ctx.url}/cannedreplies/getall`, { headers });
     return res?.data;
   } catch (error) {
-	return catchError(error);
+    return catchError(error);
   }
 };
 

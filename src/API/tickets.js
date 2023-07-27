@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { catchError } from '../helpers/catchError';
+import catchError from '../helpers/catchError';
 // TICKETS ENDPOINTS
 export const createTicket = async (ctx, payload = {}) => {
   try {
@@ -7,7 +7,7 @@ export const createTicket = async (ctx, payload = {}) => {
     const res = await axios.post(`${ctx.url}/tickets/create`, payload, { headers });
     return res?.data;
   } catch (error) {
-	return catchError(error);
+    return catchError(error);
   }
 };
 
