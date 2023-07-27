@@ -446,9 +446,9 @@ One of the following roles is always required:
 - DepartmentAdmin
 - DataControler
 - MasterUser
--  ReadOnly
+- ReadOnly
 
-- Variables:
+Variables:
 - params (object) required - set user roles params.
 - payload (object) required - set user roles payload. 
 
