@@ -1,6 +1,6 @@
 {
   "name": "glassix",
-  "version": "1.0.19",
+  "version": "1.0.20",
   "description": "Glassix Client API",
   "main": "lib/index.js",
   "scripts": {
