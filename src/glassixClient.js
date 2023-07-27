@@ -42,6 +42,7 @@ import getAllCannedReplies from './API/cannedReplies';
 import sendInteractiveDocument from './API/interactiveDocuments';
 import sendProtocol from './API/protocols';
 import { audioLinkPhoneCall, endedPhoneCall, startedPhoneCall } from './API/phoneCalls';
+import {catchError} from "./helpers/catchError";
 
 class GlassixClient {
   constructor(workspace, apiKey, apiSecret, userName, domain, apiVersion) {
@@ -69,10 +70,7 @@ class GlassixClient {
       this.tokenExpirationDate = new Date(Date.now() + (res?.data?.expires_in * 1000));
       return res?.data;
     } catch (error) {
-      return {
-        statusCode: error?.response?.status,
-        message: error?.response?.data?.Message
-      };
+      catchError(error);
     }
   }
 
