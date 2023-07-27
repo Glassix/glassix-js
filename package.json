@@ -21,6 +21,6 @@
   },
   "homepage": "https://github.com/Glassix/glassix-js#readme",
   "dependencies": {
-    "axios": "^1.4.0",
+    "axios": "^1.4.0"
   }
 }
