@@ -15,7 +15,7 @@
     "api"
   ],
   "author": "Glassix Solutions LTD",
-  "license": "ISC",
+  "license": "Apache-2.0",
   "bugs": {
     "url": "https://github.com/Glassix/glassix-js/issues"
   },
