@@ -16,6 +16,8 @@ jobs:
         with:
             node-version: 12
             registry-url: https://registry.npmjs.org
+      - name: NPM install
+        run: 'npm i'
       - name: Update NPM version and Publish to npmjs.org
         uses: bcomnes/npm-bump@v2.2.1
         with:
