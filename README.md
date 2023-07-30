@@ -19,7 +19,7 @@ Import:
 import glassix from "glassix";
 ```
 
-Create a client:
+Credentials:
 
 ```javascript
 // Your glassix subdomain
@@ -31,7 +31,7 @@ const apiSecret = 'YOUR_API_SECRET';
 const userName = 'USER_NAME';
 ```
 
-After that you can invoke Glassix Client:
+Create a client:
 
 ```javascript
 const client = new glassix.GlassixClient(workspace, apiKey, apiSecret, userName);
