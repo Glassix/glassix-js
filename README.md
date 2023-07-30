@@ -1,5 +1,5 @@
 # glassix
-Javascript and Node.js client library SDK for the Glassix REST API
+Official JavaScript client library of the Glassix REST API
 
 [![NPM version](https://badgen.net/npm/v/glassix)](https://www.npmjs.com/package/glassix)
 [![NPM downloads](https://badgen.net/npm/dm/glassix?v)](https://www.npmjs.com/package/glassix)
@@ -14,15 +14,21 @@ npm i glassix
 
 ## Usage:
 
-For using Glassix API you need prepare next variables:
+Import:
+```javascript
+import glassix from "glassix";
+```
+
+Create a client:
 
 ```javascript
+// Your glassix subdomain
 const workspace = 'YOUR_WORKSPACE';
+// Find your key and secret on Settings → Developers → Api keys
 const apiKey = 'YOUR_API_KEY';
 const apiSecret = 'YOUR_API_SECRET';
-const apiVersion = 'API_VERSION_YOU_NEED';
+
 const userName = 'YOUR_USER_NAME';
-const domain = 'YOUR_DOMAIN';
 ```
 
 **Workspace** - this is your subdomain.
@@ -44,7 +50,6 @@ For example in <https://app.glassix.com/> domain is “glassix.com”.
 After that you can invoke Glassix Client:
 
 ```javascript
-import glassix from "glassix";
 const client = new glassix.GlassixClient(workspace, apiKey, apiSecret, userName, domain, apiVersion);
 ```
 
