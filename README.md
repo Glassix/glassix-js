@@ -37,47 +37,12 @@ After that you can invoke Glassix Client:
 const client = new glassix.GlassixClient(workspace, apiKey, apiSecret, userName);
 ```
 
-And use Glassix API:
-
-```javascript
-const status = await client.users.getStatus();
-
-const ticketId = 111111;
-const ticket = await client.tickets.get(ticketId);
-
-const params = ['Sales', 'Excel'];
-const result = await client.tickets.addTags(ticket.ticketId, params);
-```
-
-## Endpoints:
-
-### [getToken](https://docs.glassix.com/reference/access-token):
-
-An Access Token is a short-lived credential used to authenticate your application to Glassix.
-To get an access token, which is valid for 3 hours, use this endpoint.
-The access token contains the user and the department.
-After obtaining the access token, you must pass it in every request, in the "Authorization" header. Authorization: Bearer TOKEN
-
-Variables:
-- userName (string) required - Users' Email address.
-
-Example:
-```javascript
-const userName = 'USER_EMAIL_ADDRESS';
-const result = await client.getToken(userName);
-```
+## Methods:
 
 ### tickets:
 
 #### [create](https://docs.glassix.com/reference/create-ticket):
 
-This endpoint creates a new ticket with participant/s and fields.
-After creation, you can send messages on behalf of users. You don't need to include the ticket's owner as a participant. Learn more about how to create a ticket in [this guide](https://docs.glassix.com/docs/create-a-ticket-using-the-api).
-
-Variables:
-- payload (object) required - New ticket data.
-
-Example:
 ```javascript
 const payload = {NEW_TICKET_DATA};
 const result = await client.tickets.create(payload);
@@ -220,20 +185,9 @@ const result = await client.tickets.setDepartment(ticketId, params);
 ```
 
 #### [addTags](https://docs.glassix.com/reference/add-tags):
-This endpoint adds tags to a specified ticket.
-Note:
-- Each new tag must exist in the allowed tags list, which can be edited in the settings page.
-- You can only update open or snoozed tickets.
-
-Variables:
-- ticketId (number) required - Ticket Id.
-- payload (object) required - ticket tags updating payload.
-
-Example:
 ```javascript
-const ticketId = 111111;
-const payload = {TICKET_TAGS_PAYLOAD};
-const result = await client.tickets.addTags(ticketId, payload);
+const nextTags = ['Sales', 'Excel'];
+const result = await client.tickets.addTags(ticketId, nextTags);
 ```
 
 #### [removeTag](https://docs.glassix.com/reference/remove-tag):
@@ -636,6 +590,12 @@ Example:
 const contactId = 111111;
 const payload = {RECORD_PAYLOAD};
 const result = await client.phoneCalls.audioLink(contactId, payload);
+```
+
+### [getToken](https://docs.glassix.com/reference/access-token):
+```javascript
+const userName = 'USER_EMAIL_ADDRESS';
+const result = await client.getToken(userName);
 ```
 
 ## License
