@@ -16,7 +16,12 @@ npm i glassix
 
 Import:
 ```javascript
-import glassix from "glassix";
+import glassix from 'glassix';
+```
+
+Or using require:
+```javascript
+const glassix = require('glassix');
 ```
 
 Credentials:
