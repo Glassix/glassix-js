@@ -39,29 +39,22 @@ const client = new glassix.GlassixClient(workspace, apiKey, apiSecret, userName)
 
 ## Methods:
 
-### tickets:
+### Tickets:
 
-#### [create](https://docs.glassix.com/reference/create-ticket):
+#### [Create](https://docs.glassix.com/reference/create-ticket):
 
 ```javascript
 const payload = {NEW_TICKET_DATA};
 const result = await client.tickets.create(payload);
 ```
 
-#### [get](https://docs.glassix.com/reference/get-ticket):
+#### [Get](https://docs.glassix.com/reference/get-ticket):
 
-This endpoint returns a ticket by id.
-
-Variables:
-- ticketId (number) required - Ticket Id.
-
-Example:
 ```javascript
-const ticketId = 111111;
 const result = await client.tickets.get(ticketId);
 ```
 
-#### [list](https://docs.glassix.com/reference/get-tickets-list):
+#### [List](https://docs.glassix.com/reference/get-tickets-list):
 
 This endpoint returns an array of [tickets](https://docs.glassix.com/reference/ticket) with activity in the time frame provided.
 A ticket is determined as active if the value of at least one of the following JSON keys is in the time frame:
