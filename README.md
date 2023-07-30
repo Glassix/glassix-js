@@ -1,5 +1,5 @@
 # glassix
-Official JavaScript client library of the Glassix REST API
+Official JavaScript client library of the [Glassix REST API](https://docs.glassix.com/reference/overview)
 
 [![NPM version](https://badgen.net/npm/v/glassix)](https://www.npmjs.com/package/glassix)
 [![NPM downloads](https://badgen.net/npm/dm/glassix?v)](https://www.npmjs.com/package/glassix)
@@ -27,30 +27,14 @@ const workspace = 'YOUR_WORKSPACE';
 // Find your key and secret on Settings → Developers → Api keys
 const apiKey = 'YOUR_API_KEY';
 const apiSecret = 'YOUR_API_SECRET';
-
-const userName = 'YOUR_USER_NAME';
+// a user with access to your department, preferably an API user
+const userName = 'USER_NAME';
 ```
-
-**Workspace** - this is your subdomain.
-For example in <https://app.glassix.com/> subdomain is “app”.
-
-To obtain your **API key** and **API secret**:
-- Login into [Glassix](https://app.glassix.com/signin/credentials).
-- Click on Settings → Developers → Api keys, or click [here](https://app.glassix.com/00000000-0000-0000-0000-000000000000/admin/api-keys).
-
-Actual information about the **API version** you can find [here](https://docs.glassix.com/reference/overview).
-“1.2” API version by default.
-
-**User name** - this is the user’s email address that uses Glassix API.
-
-**Domain** - this is your domain.
-For example in <https://app.glassix.com/> domain is “glassix.com”.
-“glassix.com” domain by default.
 
 After that you can invoke Glassix Client:
 
 ```javascript
-const client = new glassix.GlassixClient(workspace, apiKey, apiSecret, userName, domain, apiVersion);
+const client = new glassix.GlassixClient(workspace, apiKey, apiSecret, userName);
 ```
 
 And use Glassix API:
