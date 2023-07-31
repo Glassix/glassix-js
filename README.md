@@ -39,7 +39,7 @@ const userName = 'USER_NAME';
 Create a client:
 
 ```javascript
-const client = new glassix.GlassixClient(workspace, apiKey, apiSecret, userName);
+const client = new glassix(workspace, apiKey, apiSecret, userName);
 ```
 
 ## Methods:
