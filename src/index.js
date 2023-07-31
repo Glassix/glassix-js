@@ -1,9 +1,4 @@
 
-const GlassixClient = require('./glassixClient');
+const glassix = require('./glassix');
 
-// module.exports = {
-//   GlassixClient,
-// };
-
-
-export default GlassixClient;
+export default glassix;

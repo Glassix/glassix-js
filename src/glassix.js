@@ -44,7 +44,7 @@ import sendProtocol from './API/protocols';
 import { audioLinkPhoneCall, endedPhoneCall, startedPhoneCall } from './API/phoneCalls';
 import catchError from './helpers/catchError';
 
-class GlassixClient {
+class glassix {
   constructor(workspace, apiKey, apiSecret, userName, domain, apiVersion) {
     this.workspace = workspace;
     this.apiKey = apiKey;
@@ -182,4 +182,4 @@ class GlassixClient {
   }
 }
 
-export default GlassixClient;
+export default glassix;
