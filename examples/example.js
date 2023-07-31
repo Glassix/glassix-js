@@ -3,9 +3,7 @@ const glassix = require('glassix');
 // When working with npm packages you often want to test your package without having to publish it to npm.
 // This enables you to have a quicker feedback loop and keeps the number of published versions to a minimum.
 
-// Run once: npm i
-// After every changes in src files: npm run build
-// To run examples.js: npm run test:examples
+// Run in terminal: npm run test:examples
 
 console.log("Runing example.js");
 

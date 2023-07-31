@@ -10,7 +10,7 @@
     "fix": "eslint src --fix",
     "build": "cross-env BABEL_ENV=production babel src --out-dir lib",
     "prepublish": "npm run clean && npm run lint && npm run build",
-    "test:examples": "node examples/"
+    "test:examples": "cross-env BABEL_ENV=production babel src --out-dir lib && node examples/"
   },
   "files": [
     "lib",
@@ -18,15 +18,11 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Glassix/glassix-js.git"
+    "url": "https://github.com/Glassix/glassix-js.git"
   },
   "keywords": [
     "glassix",
-    "api",
-    "module",
-    "node",
-    "javascript",
-    "npm"
+    "glassix API"
   ],
   "author": "Glassix Solutions LTD",
   "license": "Apache-2.0",
