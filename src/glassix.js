@@ -45,13 +45,13 @@ import { audioLinkPhoneCall, endedPhoneCall, startedPhoneCall } from './API/phon
 import catchError from './helpers/catchError';
 
 class glassix {
-  constructor(workspace, apiKey, apiSecret, userName, domain, apiVersion) {
-    this.workspace = workspace;
-    this.apiKey = apiKey;
-    this.apiSecret = apiSecret;
-    this.apiVersion = apiVersion ? `v${apiVersion}` : 'v1.2';
-    this.userName = userName;
-    this.domain = domain || 'glassix.com';
+  constructor(clientOptions) {
+    this.workspace = clientOptions.workspace;
+    this.apiKey = clientOptions.apiKey;
+    this.apiSecret = clientOptions.apiSecret;
+    this.apiVersion = clientOptions.apiVersion ? `v${clientOptions.apiVersion}` : 'v1.2';
+    this.userName = clientOptions.userName;
+    this.domain = clientOptions.domain || 'glassix.com';
     const protocol = this.domain.includes('localhost') ? 'http' : 'https';
     this.url = `${protocol}://${this.workspace}.${this.domain}/api/${this.apiVersion}`;
     this.accessTokenData = {};

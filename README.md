@@ -39,7 +39,13 @@ const userName = 'USER_NAME';
 Create a client:
 
 ```javascript
-const client = new glassix(workspace, apiKey, apiSecret, userName);
+const clientOptions = {
+    workspace: process.env.WORKSPACE,
+    apiKey: process.env.API_KEY,
+    apiSecret: process.env.API_SECRET,
+    userName: process.env.USER_NAME
+};
+const client = new glassix(clientOptions);
 ```
 
 ## Methods:
@@ -49,79 +55,51 @@ const client = new glassix(workspace, apiKey, apiSecret, userName);
 #### [Create](https://docs.glassix.com/reference/create-ticket):
 
 ```javascript
-const payload = {NEW_TICKET_DATA};
-const result = await client.tickets.create(payload);
+const payload = {
+    participants: [
+      {
+        type: "Client",
+        protocolType: "Mail",
+        subProtocolType: "MailTo",
+        name: "David Gilmour",
+        identifier: "david.gilmour@gmail.com"
+      }
+    ],
+    tags: [
+      "Info"
+    ]
+  };
+let newTicket = await client.tickets.create(payload);
 ```
 
 #### [Get](https://docs.glassix.com/reference/get-ticket):
 
 ```javascript
-const result = await client.tickets.get(ticketId);
+const ticket = await client.tickets.get(ticketId);
 ```
 
 #### [List](https://docs.glassix.com/reference/get-tickets-list):
 
-This endpoint returns an array of [tickets](https://docs.glassix.com/reference/ticket) with activity in the time frame provided.
-A ticket is determined as active if the value of at least one of the following JSON keys is in the time frame:
-- open - The time the ticket was opened.
-- close - The time the ticket was closed.
-- lastActivity - The time of the last activity (e.g., ticket state change, message sent/received, ticket field update, etc.).
-It is required to supply since and until.
-The max time frame allowed is one calendar month.
-The max number of tickets returned in the response is 100.
-When there are more than 100 tickets, the response will supply a request URL for the next page. This URL contains the page Query Param. The last page returns an empty paging JSON key.
-
-Variables:
-- params (object) required - Tickets list query params.
-
-Example:
 ```javascript
 const params = {TICKETS_PARAMS};
 const result = await client.tickets.list(params);
 ```
 
-#### [send](https://docs.glassix.com/reference/send-ticket):
-This endpoint sends a message (transaction type "Message") on behalf of the token's user to all the ticket's participants.
-HTML is supported in email and web chat channels; [learn about our HTML support](https://docs.glassix.com/docs/send-a-message-with-html).
-
-Variables:
-- ticketId (number) required - Ticket Id.
-- payload (object) required - Ticket updating payload.
-
-Example:
+#### [Send](https://docs.glassix.com/reference/send-ticket):
 ```javascript
 const ticketId = 111111;
 const payload = {TICKET_UPDATING_PAYLOAD};
 const result = await client.tickets.send(ticketId, payload);
 ```
 
-#### [setState](https://docs.glassix.com/reference/set-ticket-sate):
-This endpoint resets the state of a ticket.
-Tickets may have 4 states:
-- Closed
-- Open
-- Pending
-- Snoozed (Note, it is not possible to set it to Snoozed via this endpoint.)
-
-Variables:
-- ticketId (number) required - Ticket Id.
-- params (object) required - Change ticket status params.
-
-Example:
+#### [Set state](https://docs.glassix.com/reference/set-ticket-sate):
 ```javascript
 const ticketId = 111111;
 const params = {CHANGE_TICKET_STATUS_PARAMS};
 const result = await client.tickets.setState(ticketId, params);
 ```
 
-#### [setFields](https://docs.glassix.com/reference/setfields):
-This endpoint updates a ticket field/s.
-
-Variables:
-- ticketId (number) required - Ticket Id.
-- payload (object) - Ticket fields updating payload. 
-
-Example:
+#### [Set fields](https://docs.glassix.com/reference/setfields):
 ```javascript
 const ticketId = 111111;
 const payload = {CHANGE_TICKET_FIELDS_PAYLOAD};
@@ -184,8 +162,8 @@ const result = await client.tickets.setDepartment(ticketId, params);
 
 #### [addTags](https://docs.glassix.com/reference/add-tags):
 ```javascript
-const nextTags = ['Sales', 'Excel'];
-const result = await client.tickets.addTags(ticketId, nextTags);
+const newTags = ['Sales', 'Excel'];
+const nextTags = await client.tickets.addTags(ticketId, newTags);
 ```
 
 #### [removeTag](https://docs.glassix.com/reference/remove-tag):

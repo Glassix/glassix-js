@@ -24,8 +24,24 @@ export const getTicket = async (ctx, ticketId) => {
 export const getTicketsList = async (ctx, params = {}) => {
   try {
     const headers = await ctx.getRequestHeaders(ctx);
-    const res = await axios.get(`${ctx.url}/tickets/list`, { headers, params });
-    return res?.data;
+    let tickets = [];
+
+
+    let nextRequestUrl = `${ctx.url}/tickets/list`;
+    do
+    {
+      const res = await axios.get(nextRequestUrl, { headers, params });
+
+      if(res?.tickets && res?.tickets.length)
+      {
+        console.log(res?.tickets.length);
+        tickets = tickets.concat(res?.tickets);
+      }
+    }
+    while(nextRequestUrl)
+
+
+    return tickets;
   } catch (error) {
     return catchError(error);
   }
