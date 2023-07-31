@@ -1,4 +1,4 @@
-const glassix = require('../lib');
+const glassix = require('glassix');
 
 // When working with npm packages you often want to test your package without having to publish it to npm.
 // This enables you to have a quicker feedback loop and keeps the number of published versions to a minimum.
@@ -18,4 +18,6 @@ const apiSecret = 'YOUR_API_SECRET';
 const userName = 'USER_NAME';
 
 
-const client = new glassix.GlassixClient(workspace, apiKey, apiSecret, userName);
+const client = new glassix(workspace, apiKey, apiSecret, userName);
+
+client.tickets.get(0);
