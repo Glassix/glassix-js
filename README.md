@@ -129,7 +129,7 @@ const payload = {
 const result = await client.tickets.setOwner(ticketId, payload);
 ```
 
-### [Assign available user](https://docs.glassix.com/reference/assign-available-user):
+#### [Assign available user](https://docs.glassix.com/reference/assign-available-user):
 ```javascript
 const result = await client.tickets.assignAvailableUser(ticketId);
 ```
@@ -506,12 +506,6 @@ Example:
 const contactId = 111111;
 const payload = {RECORD_PAYLOAD};
 const result = await client.phoneCalls.audioLink(contactId, payload);
-```
-
-### [getToken](https://docs.glassix.com/reference/access-token):
-```javascript
-const userName = 'USER_EMAIL_ADDRESS';
-const result = await client.getToken(userName);
 ```
 
 ## License
