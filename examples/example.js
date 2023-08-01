@@ -19,7 +19,7 @@ const test = async ()=> {
     const client = new glassix(clientOptions);
 
     // create ticket
-    payload = {
+    let payload = {
         participants: [
           {
             type: "Client",
@@ -47,6 +47,31 @@ const test = async ()=> {
         since: '01/07/2023 00:00:00:00',
         until: '30/07/2023 23:59:59:00'
     };
-    const tickets = await client.tickets.list(query); 
+    const tickets = await client.tickets.list(query);
+
+    // send a message in an existing ticket
+    const sendPayload = {
+        text: 'Hello!'
+    };
+    const result = await client.tickets.send(ticket.id, sendPayload);
+
+    // set ticket fields
+    let fieldsPayload = {
+        field1: "The great gig in the sky",
+        uniqueArgument: "8bc5812f-22cb-4dda-89a4-7dc93a123ede",
+        details: {
+            source: {
+                title: "My Landing Page",
+                uri: "https://www.example.com/landing-page"
+            }   
+        }
+    };
+    const result2 = await client.tickets.setFields(ticket.id, fieldsPayload);
+
+    // set ticket state
+    const setStatePayload = {
+        nextState: "Closed"
+    };
+    const result3 = await client.tickets.setState(ticket.id, setStatePayload);
 };
 test();

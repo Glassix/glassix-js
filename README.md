@@ -72,31 +72,41 @@ const ticket = await client.tickets.get(ticketId);
 #### [List](https://docs.glassix.com/reference/get-tickets-list):
 
 ```javascript
-let query = {
+let payload = {
     since: '01/07/2023 00:00:00:00',
     until: '30/07/2023 23:59:59:00'
 };
-const tickets = await client.tickets.list(query);
+const tickets = await client.tickets.list(payload);
 ```
 
 #### [Send](https://docs.glassix.com/reference/send-ticket):
 ```javascript
-const ticketId = 111111;
-const payload = {TICKET_UPDATING_PAYLOAD};
-const result = await client.tickets.send(ticketId, payload);
+  const payload = {
+      text: 'Hello!'
+  };
+  const result = await client.tickets.send(ticketId, payload);
 ```
 
 #### [Set state](https://docs.glassix.com/reference/set-ticket-sate):
 ```javascript
-const ticketId = 111111;
-const params = {CHANGE_TICKET_STATUS_PARAMS};
-const result = await client.tickets.setState(ticketId, params);
+    const payload = {
+        nextState: "Closed"
+    };
+    const result = await client.tickets.setState(ticketId, payload);
 ```
 
 #### [Set fields](https://docs.glassix.com/reference/setfields):
 ```javascript
-const ticketId = 111111;
-const payload = {CHANGE_TICKET_FIELDS_PAYLOAD};
+let payload = {
+    field1: "The great gig in the sky",
+    uniqueArgument: "8bc5812f-22cb-4dda-89a4-7dc93a123ede",
+    details: {
+        source: {
+            title: "My Landing Page",
+            uri: "https://www.example.com/landing-page"
+        }   
+    }
+};
 const result = await client.tickets.setFields(ticketId, payload);
 ```
 

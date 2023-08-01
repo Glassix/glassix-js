@@ -28,12 +28,23 @@ export const getTicketsList = async (ctx, params = {}) => {
     let tickets = [];
 
     let count = 0;
-    let nextRequestUrl = `${ctx.url}/tickets/list`;
+    let nextRequestUrl = null;
     do
     {
+      let res = null;
+      if (count === 0)
+      {
+        // first request
+        res = await axios.get(`${ctx.url}/tickets/list`, { headers, params });
+      }
+      else
+      {
+        // pagination
+        res = await axios.get(nextRequestUrl, { headers, params });
+      }
+
       console.log(nextRequestUrl);
       count += 1;
-      const res = await axios.get(nextRequestUrl, { headers, params });
 
       // Aggregate the response tickets
       if (res?.data?.tickets && res?.data?.tickets.length)
@@ -44,7 +55,6 @@ export const getTicketsList = async (ctx, params = {}) => {
 
       // Let's check if we need to make more requests
       nextRequestUrl = res?.data?.paging?.next;
-      params = {};
     }
     while (nextRequestUrl && count < 15);
 
