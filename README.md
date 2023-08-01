@@ -24,25 +24,16 @@ Or using require:
 const glassix = require('glassix');
 ```
 
-Credentials:
-
-```javascript
-// Your glassix subdomain
-const workspace = 'YOUR_WORKSPACE';
-// Find your key and secret on Settings → Developers → Api keys
-const apiKey = 'YOUR_API_KEY';
-const apiSecret = 'YOUR_API_SECRET';
-// a user with access to your department, preferably an API user
-const userName = 'USER_NAME';
-```
-
 Create a client:
 
 ```javascript
 const clientOptions = {
+    // Your glassix subdomain
     workspace: process.env.WORKSPACE,
+    // Find your key and secret on Settings → Developers → Api keys
     apiKey: process.env.API_KEY,
     apiSecret: process.env.API_SECRET,
+    // a user with access to your department, preferably an API user
     userName: process.env.USER_NAME
 };
 const client = new glassix(clientOptions);
