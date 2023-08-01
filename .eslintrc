@@ -5,6 +5,10 @@
     "mocha": true
   },
   "rules": {
-    "comma-dangle": ["error", "only-multiline"]
+    "comma-dangle": ["error", "only-multiline"],
+    "linebreak-style": 0,
+    "brace-style": 0,
+    "no-await-in-loop": 0,
+    "no-console": 1
   }
 }

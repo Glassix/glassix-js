@@ -31,19 +31,20 @@ export const getTicketsList = async (ctx, params = {}) => {
     let nextRequestUrl = `${ctx.url}/tickets/list`;
     do
     {
+      count += 1;
       const res = await axios.get(nextRequestUrl, { headers, params });
 
       // Aggregate the response tickets
-      if(res?.data?.tickets && res?.data?.tickets.length)
+      if (res?.data?.tickets && res?.data?.tickets.length)
       {
-        console.log(res?.data?.tickets.length);
+        console.warn(res?.data?.tickets.length);
         tickets = tickets.concat(res?.data?.tickets);
       }
 
       // Let's check if we need to make more requests
       nextRequestUrl = res?.data?.paging?.next;
     }
-    while(nextRequestUrl)
+    while (nextRequestUrl && count < 15);
 
     return tickets;
   } catch (error) {
