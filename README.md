@@ -188,23 +188,12 @@ const payload = {
 const result = await client.tickets.html(ticketId, payload);
 ```
 
-#### [generateSurveyLink](https://docs.glassix.com/reference/generate-survey-link):
-Surveys are your way of receiving from your customer information about their experience contacting your center.
-Glassix allows you to create and send surveys once tickets are closed.
-For the phone call protocol, mapping a survey isn't possible. Using this API endpoint, you can generate a URL to a survey for your ticket that can be sent either using this endpoint or an external service.
-Using this endpoint is possible only if:
-- The ticket is closed.
-- A survey hasn't been sent in the ticket.
-- The specific channel of the ticket isn't mapped to a survey.
-
-Variables:
-- ticketId (number) required - Ticket Id.
-- payload (object) required - generate Survey Link payload.
-
-Example:
+#### [Generate survey link](https://docs.glassix.com/reference/generate-survey-link):
 ```javascript
-const ticketId = 111111;
-const payload = {GENERATE_SURVAY_LINK_PAYLOAD};
+const payload = {
+  surveyId: 73993,
+  participantId: 1
+};
 const result = await client.tickets.generateSurveyLink(ticketId, payload);
 ```
 
