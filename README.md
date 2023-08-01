@@ -1,4 +1,5 @@
-# glassix
+# [glassix](https://www.glassix.com)
+
 Official JavaScript client library of the [Glassix REST API](https://docs.glassix.com/reference/overview)
 
 [![NPM version](https://badgen.net/npm/v/glassix)](https://www.npmjs.com/package/glassix)
