@@ -1,4 +1,4 @@
-# [glassix](https://www.glassix.com)
+# [Glassix](https://www.glassix.com)
 
 Official JavaScript client library of the [Glassix REST API](https://docs.glassix.com/reference/overview)
 
