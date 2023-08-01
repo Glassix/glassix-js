@@ -1,5 +1,6 @@
 import axios from 'axios';
 import catchError from '../helpers/catchError';
+
 // TICKETS ENDPOINTS
 export const createTicket = async (ctx, payload = {}) => {
   try {
@@ -26,20 +27,23 @@ export const getTicketsList = async (ctx, params = {}) => {
     const headers = await ctx.getRequestHeaders(ctx);
     let tickets = [];
 
-
+    let count = 0;
     let nextRequestUrl = `${ctx.url}/tickets/list`;
     do
     {
       const res = await axios.get(nextRequestUrl, { headers, params });
 
-      if(res?.tickets && res?.tickets.length)
+      // Aggregate the response tickets
+      if(res?.data?.tickets && res?.data?.tickets.length)
       {
-        console.log(res?.tickets.length);
-        tickets = tickets.concat(res?.tickets);
+        console.log(res?.data?.tickets.length);
+        tickets = tickets.concat(res?.data?.tickets);
       }
+
+      // Let's check if we need to make more requests
+      nextRequestUrl = res?.data?.paging?.next;
     }
     while(nextRequestUrl)
-
 
     return tickets;
   } catch (error) {
