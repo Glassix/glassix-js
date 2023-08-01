@@ -31,6 +31,7 @@ export const getTicketsList = async (ctx, params = {}) => {
     let nextRequestUrl = `${ctx.url}/tickets/list`;
     do
     {
+      console.log(nextRequestUrl);
       count += 1;
       const res = await axios.get(nextRequestUrl, { headers, params });
 
@@ -43,6 +44,7 @@ export const getTicketsList = async (ctx, params = {}) => {
 
       // Let's check if we need to make more requests
       nextRequestUrl = res?.data?.paging?.next;
+      params = {};
     }
     while (nextRequestUrl && count < 15);
 

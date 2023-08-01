@@ -72,8 +72,11 @@ const ticket = await client.tickets.get(ticketId);
 #### [List](https://docs.glassix.com/reference/get-tickets-list):
 
 ```javascript
-const params = {TICKETS_PARAMS};
-const result = await client.tickets.list(params);
+let query = {
+    since: '01/07/2023 00:00:00:00',
+    until: '30/07/2023 23:59:59:00'
+};
+const tickets = await client.tickets.list(query);
 ```
 
 #### [Send](https://docs.glassix.com/reference/send-ticket):

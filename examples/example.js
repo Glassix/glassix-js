@@ -17,13 +17,7 @@ const test = async ()=> {
         userName: process.env.USER_NAME
     };
     const client = new glassix(clientOptions);
-    let payload = {
-        since: '01/07/2023 00:00:00:00',
-        until: '30/07/2023 23:59:59:00'
-    };
-    const result = await client.tickets.list(payload);
-    console.log(result);
-    return;
+
     // create ticket
     payload = {
         participants: [
@@ -47,5 +41,12 @@ const test = async ()=> {
     // update ticket's tags
     const newTags = ['Sales'];
     const nextTags = await client.tickets.addTags(ticket.id, newTags);
+
+    // list all tickets between dates
+    let query = {
+        since: '01/07/2023 00:00:00:00',
+        until: '30/07/2023 23:59:59:00'
+    };
+    const tickets = await client.tickets.list(query); 
 };
 test();
