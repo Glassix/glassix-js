@@ -60,7 +60,7 @@ const payload = {
       "Info"
     ]
   };
-let newTicket = await client.tickets.create(payload);
+const newTicket = await client.tickets.create(payload);
 ```
 
 #### [Get](https://docs.glassix.com/reference/get-ticket):
@@ -81,18 +81,18 @@ const tickets = await client.tickets.list(payload);
 
 #### [Send](https://docs.glassix.com/reference/send-ticket):
 ```javascript
-  const payload = {
-      text: 'Hello!'
-  };
-  const result = await client.tickets.send(ticketId, payload);
+const payload = {
+    text: 'Hello!'
+};
+const result = await client.tickets.send(ticketId, payload);
 ```
 
 #### [Set state](https://docs.glassix.com/reference/set-ticket-sate):
 ```javascript
-    const payload = {
-        nextState: "Closed"
-    };
-    const result = await client.tickets.setState(ticketId, payload);
+  const payload = {
+      nextState: "Closed"
+  };
+  const result = await client.tickets.setState(ticketId, payload);
 ```
 
 #### [Set fields](https://docs.glassix.com/reference/setfields):
@@ -110,135 +110,81 @@ let payload = {
 const result = await client.tickets.setFields(ticketId, payload);
 ```
 
-#### [setParticipantName](https://docs.glassix.com/reference/set-participant-name):
-This endpoint updates the name of a single participant within a ticket.
-
-Variables:
-- ticketId (number) required - Ticket Id.
-- payload (object) required - Participant updating payload. 
-
-Example:
+#### [Set participant name](https://docs.glassix.com/reference/set-participant-name):
 ```javascript
-const ticketId = 111111;
-const payload = {PARTICIPANT_UPDATING_PAYLOAD};
+const payload = {
+    id: 1,
+    name: "Brenda Rahman"
+};
 const result = await client.tickets.setParticipantName(ticketId, payload);
 ```
 
-#### [setOwner](https://docs.glassix.com/reference/set-owner):
-This endpoint assigns a new owner to a ticket.
-
-Variables:
-- ticketId (number) required - Ticket Id.
-- params (object) required - Change ticket owner params.
-
-Example:
+#### [Set ticket owner](https://docs.glassix.com/reference/set-owner):
 ```javascript
-const ticketId = 111111;
-const params = {CHANGE_TICKET_OWNER_PARAMS};
-const result = await client.tickets.setOwner(ticketId, params);
+const payload = {
+    nextOwnerUserName: "alinamiss@acme.com",
+    keepCurrentOwnerInConversation: false
+};
+const result = await client.tickets.setOwner(ticketId, payload);
 ```
 
-### [assignAvailableUser](https://docs.glassix.com/reference/assign-available-user):
-This endpoint allows the specified ticket to be assigned to another available agent. If there is none, the ticket will be moved to the queue.
-
-Variables:
-- ticketId (number) required - Ticket Id. 
-
-Example:
+### [Assign available user](https://docs.glassix.com/reference/assign-available-user):
 ```javascript
-const ticketId = 111111;
 const result = await client.tickets.assignAvailableUser(ticketId);
 ```
 
-#### [setDepartment](https://docs.glassix.com/reference/set-department):
-This endpoint "moves" a ticket to another department. Note, this copies the ticket to the other department where the ticket will receive a new ticket id.
-
-Variables:
-- ticketId (number) required - Ticket Id.
-- params (object) required - Ticket fields updating params. 
-
-Example:
+#### [Set department](https://docs.glassix.com/reference/set-department):
 ```javascript
-const ticketId = 111111;
-const params = {TICKET_DEPARTMENT_PARAMS};
-const result = await client.tickets.setDepartment(ticketId, params);
+const payload = {
+  departmentId: '5baf94b7-4ebb-4442-81a5-27ac4dd1f03f'
+};
+const result = await client.tickets.setDepartment(ticketId, payload);
 ```
 
-#### [addTags](https://docs.glassix.com/reference/add-tags):
+#### [Add tags](https://docs.glassix.com/reference/add-tags):
 ```javascript
 const newTags = ['Sales', 'Excel'];
 const nextTags = await client.tickets.addTags(ticketId, newTags);
 ```
 
-#### [removeTag](https://docs.glassix.com/reference/remove-tag):
-This endpoint removes a single tag from a ticket.
-
-Variables:
-- ticketId (number) required - Ticket Id.
-- payload (object) required - remove ticket tag payload.
-
-Example:
+#### [Remove tag](https://docs.glassix.com/reference/remove-tag):
 ```javascript
-const ticketId = 111111;
-const payload = {TICKET_TAGS_PAYLOAD};
+const payload = {
+  tag: 'Sales'
+};
 const result = await client.tickets.removeTag(ticketId, payload);
 ```
 
-#### [addNote](https://docs.glassix.com/reference/add-note):
-This endpoint adds a note to the ticket.
-The note will be sent on behalf of the token's user and not visible to customers, only to agents.
-At least one of the following params is required to add a note:
-- text
-- HTML
-
-Variables:
-- ticketId (number) required - Ticket Id.
-- payload (object) required - remove ticket tag payload. 
-
-Example:
+#### [Add note](https://docs.glassix.com/reference/add-note):
 ```javascript
-const ticketId = 111111;
-const payload = {TICKET_NOTE_PARAMS};
+const payload = {
+  text: 'Ye on properly handsome returned throwing am no whatever.'
+};
 const result = await client.tickets.addNote(ticketId, payload);
 ```
 
-#### [scramble](https://docs.glassix.com/reference/scramble-ticket):
-This endpoints removes all the data from this ticket (this action cannot be reversed)
-
-Variables:
-- ticketId (number) required - Ticket Id.
-
-Example:
+#### [Scramble](https://docs.glassix.com/reference/scramble-ticket):
 ```javascript
-const ticketId = 111111;
 const result = await client.tickets.scramble(ticketId);
 ```
 
-#### [pdf](https://docs.glassix.com/referehttps://docs.glassix.com/reference/ticket-pdfnce/add-note):
-This endpoint will return the ticket summary, containing all the messages, ticket details and photos as a pdf document.
-
-Variables:
-- ticketId (number) required - Ticket Id.
-- payload (object) required - ticket PDF payload. 
-
-Example:
+#### [PDF](https://docs.glassix.com/referehttps://docs.glassix.com/reference/ticket-pdfnce/add-note):
 ```javascript
-const ticketId = 111111;
-const payload = {TICKET_PDF_PAYLOAD};
+const payload = {
+  includeDetails: true,
+  includeConversationLink: false,
+  includeNotes: true
+};
 const result = await client.tickets.pdf(ticketId, payload);
 ```
 
-#### [html](https://docs.glassix.com/reference/ticket-html):
-This endpoint will return the ticket summary, containing all the messages, ticket details and photos as an HTML document.
-
-Variables:
-- ticketId (number) required - Ticket Id.
-- payload (object) required - ticket HTML payload. More information .
-
-Example:
+#### [HTML](https://docs.glassix.com/reference/ticket-html):
 ```javascript
-const ticketId = 111111;
-const payload = {TICKET\_HTML\_PAYLOAD};
+const payload = {
+  includeDetails: true,
+  includeConversationLink: false,
+  includeNotes: true
+};
 const result = await client.tickets.html(ticketId, payload);
 ```
 

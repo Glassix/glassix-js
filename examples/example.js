@@ -18,6 +18,8 @@ const test = async ()=> {
     };
     const client = new glassix(clientOptions);
 
+    let ticketId = 53001859;
+    return;
     // create ticket
     let payload = {
         participants: [
@@ -73,5 +75,19 @@ const test = async ()=> {
         nextState: "Closed"
     };
     const result3 = await client.tickets.setState(ticket.id, setStatePayload);
+
+    // set participant name
+    const setNamePayload = {
+        id: 1,
+        name: "Brenda Rahman"
+     };
+    const result4 = await client.tickets.setParticipantName(ticketId, setNamePayload);
+
+    // set ticket owner
+    const setOwnerPayload = {
+        nextOwnerUserName: "alinamiss@acme.com",
+        keepCurrentOwnerInConversation: false
+    };
+    const result5 = await client.tickets.setOwner(ticketId, setOwnerPayload);
 };
 test();
