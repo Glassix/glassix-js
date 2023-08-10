@@ -1,4 +1,4 @@
-# glassix
+# Glassix
 Official JavaScript client library of the [Glassix REST API](https://docs.glassix.com/reference/overview)
 
 [![NPM version](https://badgen.net/npm/v/glassix)](https://www.npmjs.com/package/glassix)
@@ -34,7 +34,9 @@ const clientOptions = {
     apiKey: process.env.API_KEY,
     apiSecret: process.env.API_SECRET,
     // a user with access to your department, preferably an API user
-    userName: process.env.USER_NAME
+    userName: process.env.USER_NAME,
+    //Your glassix domain
+    domain: process.env.DOMAIN
 };
 const client = new glassix(clientOptions);
 ```
@@ -197,319 +199,171 @@ const payload = {
 const result = await client.tickets.generateSurveyLink(ticketId, payload);
 ```
 
-### users:
+### Users:
 
-#### [getAll](https://docs.glassix.com/reference/get-all-users):
-This endpoint will return all the users in the department. 
-
-Example:
+#### [Get all](https://docs.glassix.com/reference/get-all-users):
 ```javascript
-const result = await client.users.getAll();
+const users = await client.users.getAll();
 ```
 
-#### [setStatus](https://docs.glassix.com/reference/set-status):
-Set the status of a user.
-
-Variables:
-- payload (object) required - set Status payload.
-
-Example:
+#### [Set status](https://docs.glassix.com/reference/set-status):
 ```javascript
-  const payload = {SET_STATUS_PAYLOAD};
+  const payload = {nextStatus: "Break"};
   const result = await client.users.setStatus(payload);
   ```
   
-#### [getStatus](https://docs.glassix.com/reference/get-status):
-This get the status of an user
-
-Example:
+#### [Get status](https://docs.glassix.com/reference/get-status):
 ```javascript
-const result = await client.users.getStatus();
+const status = await client.users.getStatus();
 ```
 
-#### [add](https://docs.glassix.com/reference/add-user):
-This endpoint adds new users to the current department.
-Each user name needs to be a valid email address.
-The API allows you to attach a unique argument to your users.
+#### [Add](https://docs.glassix.com/reference/add-user):
 
-Variables:
-- params (object) required -add user url params.
-- payload (object) required -add user payload.
-
-Example:
 ```javascript
-const params = {ADD_USER_PARAMS};
-const payload = {ADD_USER_PAYLOAD};
-const result = await client.user.add(payload,params);
+ const params= {role:"SystemUser", userType:"AGENT"};
+ const payload= [{uniqueArgument: "exampleValue", userName: "john.doe@gmail.com"}];
+ const result= await client.users.add(payload, params);
 ```
 
-#### [delete](https://docs.glassix.com/reference/delete-user):
-This endpoint deletes a user from all of the departments.
-The user will only be deleted from departments that both the user and the token's user are in.
+#### [Delete](https://docs.glassix.com/reference/delete-user):
 
-Variables:
-- params (object) required - delete user params.
-
-Example:
 ```javascript
-const params = {DELETE_USER_PARAMS};
-const result = await client.user.delete(params);
+ const userName= {userName:"john.doe@gmail.com"};
+ const result= await client.users.delete(userName);
 ```
 
-#### [setUniqueArgument](https://docs.glassix.com/reference/put_users-setuniqueargument):
-Add a custom value to a user in this department.
-The value is not used by Glassix.
-Can be helpfull to set this value as the user id in your CRM for example.
-(this argument is per department, meaning that if a user is in 2 departments, it'll have 2 different arguments). Max length is 50 chars.
-
-Variables:
-- payload (object) required -set unique argument payload.
-
-Example:
+#### [Set unique argument](https://docs.glassix.com/reference/put_users-setuniqueargument):
 ```javascript
-const payload = {SET_UNAQUE_ARGUMENT_PAYLOAD};
-const result = await client.users.setUniqueArgument(payload);
+ const uniqueArgument= {nextUniqueArgument:"John Doe's unique argument"};
+const result = await client.users.setUniqueArgument(uniqueArgument);
 ```
 
-#### [update](https://docs.glassix.com/reference/user-update):
-Update a user's information.
-
-Variables:
-- payload (object) required - Update a user's information payload. 
-
-Example:
+#### [Update](https://docs.glassix.com/reference/user-update):
 ```javascript
-const payload = {UPDATE_USERS_INFORMATION_PAYLOAD};
+const payload = {shortName:"John", fullName:"John Doe", jobTitle:"customer support representative"};
 const result = await client.users.update(payload);
 ```
 
-#### [getByUniqueArgument](https://docs.glassix.com/reference/get-by-unique-argument):
-This endpointreturnes a user according to the unique argument provided.
-
-Variables:
-- params (object) required -get user by unique argument params.
-
-Example:
+#### [Get by unique argument](https://docs.glassix.com/reference/get-by-unique-argument):
 ```javascript
-const params = {GET_USER_BY_UNIQUE_ARGUMENT_PARAMS};
-const result = await client.user.getByUniqueArgument(params);
+const uniqueArgument= {uniqueArgument:"John Doe's unique argument"};
+const user= await client.users.getByUniqueArgument(uniqueArgument);
 ```
 
-#### [setRoles](https://docs.glassix.com/reference/set-roles):
-This endpoint updates the roles of an existing user.
-This endpoint overrides all existing roles and replaces them with the new ones.
-The access token of the user which performs the request must have an admin role.
-One of the following roles is always required:
-- SystemtUser
-- DepartmentAdmin
-- DataControler
-- MasterUser
-- ReadOnly
-
-Variables:
-- params (object) required - set user roles params.
-- payload (object) required - set user roles payload. 
-
-Example:
+#### [Set roles](https://docs.glassix.com/reference/set-roles):
 ```javascript
-const params = {SET_USER_ROLES_PARAMS};
-const payload = {SET_USER_ROLES_PAYLOAD};
-const result = await client.user.setRoles(payload,params);
+const userName= {userName:"john.doe@gmail.com"};
+const roles= ["DepartmentAdmin", "SystemUser"];
+const result= await client.users.setRoles(roles, userName);
 ```
 
-### tenants:
+### Tenants:
 
-#### [isOnline](https://docs.glassix.com/reference/is-online):
-This endpoint checks if the department is open at the moment. Each protocol can have different business hours.
-
-Variables:
-- params (object) required -open tenants params. 
-
-Example:
+#### [Is online](https://docs.glassix.com/reference/is-online):
 ```javascript
-const params = {OPEN_TENANTS_PARAMS};
-const result = await client.tenants.isOnline(params);
+ const parameters= {departmentId:"YOUR_API_KEY", protocolType:"Mail"};
+ const result= await client.tenants.isOnline(parameters);
 ```
 
-#### [getTags](https://docs.glassix.com/reference/get-tags):
-This endpoint returns all the available ticket tags from this department. 
-
-Example:
+#### [Get tags](https://docs.glassix.com/reference/get-tags):
 ```javascript
-const result = await client.tenants.getTags();
+const tags = await client.tenants.getTags();
 ```
 
-### contacts:
+### Contacts:
 
-#### [get](https://docs.glassix.com/reference/get-contacts):
-This endpoint returns a contact based on the contact id.
-
-Variables:
-- contactId (number) required - Contact Id. 
-
-Example:
+#### [Get](https://docs.glassix.com/reference/get-contacts):
 ```javascript
-const contactId = 111111;
-const result = await client.contacts.get(contactId);
+const contact= await client.contacts.get(contactId);
 ```
 
-#### [setName](https://docs.glassix.com/reference/set-name):
-This endpoint updates the name of the contact.
-
-Variables:
-- contactId (number) required - Contact Id. 
-- payload (object) required - updates contacts name payload. 
-
-Example:
+#### [Set name](https://docs.glassix.com/reference/set-name):
 ```javascript
-const contactId = 111111;
-const payload = {UPDATES_CONTACTS_NAME_PAYLOAD};
-const result = await client.contacts.setName(contactId, payload);
+ const payload= {nextName: "Jane Doe"}; 
+ const result= await client.contacts.setName(contactId, payload);
 ```
 
-#### [addIdentifier](https://docs.glassix.com/reference/add-identifier):
-This endpoint adds an identifier to an existing contact.
-The identifiers that can be added using this endpoint are:
-- Phone numer
-- Email address
-- Facebook ID
-- Instgram ID
-
-Variables:
-- contactId (number) required - Contact Id. 
-- payload (object) required - adds contacts identifier payload. 
-
-Example:
+#### [Add identifier](https://docs.glassix.com/reference/add-identifier):
 ```javascript
-const contactId = 111111;
-const payload = {ADDS_CONTACTS_IDENTIFIER_PAYLOAD};
-const result = await client.contacts.addIdentifier(contactId, payload);
+ const payload= {forceMerge: false, identifierType:"MailAddress", identifier:"jane.doe@gmail.com"}; 
+ const result= await client.contacts.addIdentifier(contactId, payload);
 ```
 
-#### [setUniqueArgument](https://docs.glassix.com/reference/set-contact-unique-argument):
-This endpoint adds and changes a unique parameter to a contact. The parameter can be the contact id in your CRM or any other id you want.
+#### [Set unique argument](https://docs.glassix.com/reference/set-contact-unique-argument):
 
-Variables:
-- contactId (number) required - Contact Id. 
-- payload (object) required - set contacts unique parameter payload . 
-
-Example:
 ```javascript
-const contactId = 111111;
-const payload = {SET_CONTACTS_UNIQUE_PARAMETER\_PAYLOAD};
+const payload = {nextUniqueArgument: "Jane Doe's unique argument"};
 const result = await client.contacts.setUniqueArgument(contactId, payload);
 ```
 
-#### [deleteIdentifier](https://docs.glassix.com/reference/delete-identifier):
-This endpoint deletes an identifier from an existing contact.
-
-Variables:
-- contactId (number) required - Contact Id. 
-- params (object) required - delete contacts identifier params. 
-
-Example:
+#### [Delete identifier](https://docs.glassix.com/reference/delete-identifier):
 ```javascript
-const contactId = 111111;
-const params = {DELETE\_CONTACTS\_IDENTIFIER\_PARAMS};
+const params = {contactIdentifierId:1};
 const result = await client.contacts.deleteIdentifier(contactId, params);
 ```
 
-### cannedReplies:
+### Canned Replies:
 
-#### [getAll](https://docs.glassix.com/reference/get-all-c-anned-replies):
-This endpoint returns all of the department's canned replies.
+#### [Get all](https://docs.glassix.com/reference/get-all-c-anned-replies):
 
-Example:
 ```javascript
-const result = await client.cannedReplies.getAll();
+const cannedReplies = await client.cannedReplies.getAll();
 ```
 
-### interactiveDocuments:
+### Interactive documents:
 
-#### [send](https://docs.glassix.com/reference/send-interactive-document):
-Create new documents and send them to all the ticket's participants.
-The document will be sent on behalf of the ticket owner.
-Each document being sent has a template.
-The template is the "structure" of the document, which fields are required, their default values, and more.
-After creating a template, in Glassix's settings, you can programmatically send documents without any user interaction.
-The request can contain an array of fields.
-
-Variables:
-- contactId (number) required - Contact Id. 
-- payload (object) required - send documents payload . 
-
-Example:
+#### [Send](https://docs.glassix.com/reference/send-interactive-document):
 ```javascript
-const contactId = 111111;
-const payload = {SEND\_DOCUMENTS\_PAYLOAD};
-const result = await client.interactiveDocuments.send(contactId, payload);
+const payload ={
+    shouldLockDocument: false,
+    baseTemplateId: 43,
+    message: "Please enter your full name in the document.",
+    fields: [
+        {
+          type: "Text",
+          name: "fullName_1"
+        }
+    ]
+};
+const result = await client.interactiveDocuments.send(ticketId, payload);
 ```
 
-### protocols:
+### Protocols:
 
-#### [send](https://docs.glassix.com/reference/protocols-send):
-This endpoint sends a message, not as a part of a ticket.
-Currently the supported protocols are:
-- WhatsApp
-- SMS
-The from parameter must be a number or an email address which is linked to your department.
-
-Variables:
-- payload (object) required - send message payload. 
-
-Example:
+#### [Send](https://docs.glassix.com/reference/protocols-send):
 ```javascript
-const payload = {SEND_MESSAGE_PAYLOAD};
+const payload = {
+    protocolType: "Whatsapp",
+    text: "Hi",
+    from: "972524646214",
+    to: "972547101833"
+};
 const result = await client.protocols.send(payload);
 ```
 
-### phoneCalls:
+### Phone Calls:
 
-#### [started](https://docs.glassix.com/reference/send-interactive-document):
-This endpoint adds a record that the phone call has started. Have a look at our guide for more details and examples.
-
-Variables:
-- contactId (number) required - Contact Id. 
-- payload (object) required - record payload .
-
-Example:
+#### [Started](https://docs.glassix.com/reference/send-interactive-document):
 ```javascript
-const contactId = 111111;
-const payload = {RECORD_PAYLOAD};
-const result = await client.phoneCalls.started(contactId, payload);
+const payload = {dateTime: "24/12/2020 11:20:00:22"};
+const result = await client.phoneCalls.started(ticketId, payload);
 ```
 
-#### [ended](https://docs.glassix.com/reference/call-ended):
-This endpoint adds a record that the phone call has ended. Have a look at our guide for more details and examples.
-
-Variables:
-- contactId (number) required - Contact Id. 
-- payload (object) required - record payload . 
-
-Example:
+#### [Ended](https://docs.glassix.com/reference/call-ended):
 ```javascript
-const contactId = 111111;
-const payload = {RECORD_PAYLOAD};
-const result = await client.phoneCalls.ended(contactId, payload);
+const payload = {dateTime: "24/12/2020 11:25:00:22"};
+const result = await client.phoneCalls.ended(ticketId, payload);
 ```
 
-#### [audioLink](https://docs.glassix.com/reference/call-audio-link):
-This endpoint adds a recording of the phone call as a link reference. Have a look at our guide for more details and examples.
-
-Variables:
-- contactId (number) required - Contact Id. 
-- payload (object) required - record payload . 
-
-Example:
+#### [Audio Link](https://docs.glassix.com/reference/call-audio-link):
 ```javascript
-const contactId = 111111;
-const payload = {RECORD_PAYLOAD};
-const result = await client.phoneCalls.audioLink(contactId, payload);
+const payload = {audioUri: "https://file-examples-com.github.io/uploads/2017/11/file_example_OOG_1MG.ogg"};
+const result = await client.phoneCalls.audioLink(ticketId, payload);
 ```
 
-### [getToken](https://docs.glassix.com/reference/access-token):
+### [Get Token](https://docs.glassix.com/reference/access-token):
 ```javascript
-const userName = 'USER_EMAIL_ADDRESS';
+const userName = 'john.doe@gmail.com';
 const result = await client.getToken(userName);
 ```
 
