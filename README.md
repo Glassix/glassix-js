@@ -1,4 +1,5 @@
-# Glassix
+
+# [Glassix](https://www.glassix.com)
 Official JavaScript client library of the [Glassix REST API](https://docs.glassix.com/reference/overview)
 
 [![NPM version](https://badgen.net/npm/v/glassix)](https://www.npmjs.com/package/glassix)
@@ -130,7 +131,7 @@ const payload = {
 const result = await client.tickets.setOwner(ticketId, payload);
 ```
 
-### [Assign available user](https://docs.glassix.com/reference/assign-available-user):
+#### [Assign available user](https://docs.glassix.com/reference/assign-available-user):
 ```javascript
 const result = await client.tickets.assignAvailableUser(ticketId);
 ```
