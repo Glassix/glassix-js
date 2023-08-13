@@ -1,4 +1,5 @@
-# Glassix
+
+# [Glassix](https://www.glassix.com)
 Official JavaScript client library of the [Glassix REST API](https://docs.glassix.com/reference/overview)
 
 [![NPM version](https://badgen.net/npm/v/glassix)](https://www.npmjs.com/package/glassix)
@@ -130,7 +131,7 @@ const payload = {
 const result = await client.tickets.setOwner(ticketId, payload);
 ```
 
-### [Assign available user](https://docs.glassix.com/reference/assign-available-user):
+#### [Assign available user](https://docs.glassix.com/reference/assign-available-user):
 ```javascript
 const result = await client.tickets.assignAvailableUser(ticketId);
 ```
@@ -360,6 +361,7 @@ const result = await client.phoneCalls.ended(ticketId, payload);
 const payload = {audioUri: "https://file-examples-com.github.io/uploads/2017/11/file_example_OOG_1MG.ogg"};
 const result = await client.phoneCalls.audioLink(ticketId, payload);
 ```
+
 
 ### [Get Token](https://docs.glassix.com/reference/access-token):
 ```javascript
