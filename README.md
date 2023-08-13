@@ -208,8 +208,10 @@ const users = await client.users.getAll();
 
 #### [Set status](https://docs.glassix.com/reference/set-status):
 ```javascript
-  const payload = {nextStatus: "Break"};
-  const result = await client.users.setStatus(payload);
+const payload = {
+    nextStatus: "Break"
+};
+const result = await client.users.setStatus(payload);
   ```
   
 #### [Get status](https://docs.glassix.com/reference/get-status):
@@ -220,40 +222,58 @@ const status = await client.users.getStatus();
 #### [Add](https://docs.glassix.com/reference/add-user):
 
 ```javascript
- const params= {role:"SystemUser", userType:"AGENT"};
- const payload= [{uniqueArgument: "exampleValue", userName: "john.doe@gmail.com"}];
- const result= await client.users.add(payload, params);
+const params = {
+    role: "SystemUser", 
+    userType: "AGENT"
+};
+const payload = [{
+    uniqueArgument: "exampleValue", 
+    userName: "john.doe@gmail.com"
+}];
+const result = await client.users.add(payload, params);
 ```
 
 #### [Delete](https://docs.glassix.com/reference/delete-user):
 
 ```javascript
- const userName= {userName:"john.doe@gmail.com"};
- const result= await client.users.delete(userName);
+const userName = {
+    userName: "john.doe@gmail.com"
+};
+const result = await client.users.delete(userName);
 ```
 
 #### [Set unique argument](https://docs.glassix.com/reference/put_users-setuniqueargument):
 ```javascript
- const uniqueArgument= {nextUniqueArgument:"John Doe's unique argument"};
+const uniqueArgument = {
+    nextUniqueArgument: "John Doe's unique argument"
+};
 const result = await client.users.setUniqueArgument(uniqueArgument);
 ```
 
 #### [Update](https://docs.glassix.com/reference/user-update):
 ```javascript
-const payload = {shortName:"John", fullName:"John Doe", jobTitle:"customer support representative"};
-const result = await client.users.update(payload);
+const payload = {
+        shortName: "John",
+        fullName: "John Doe",
+        jobTitle: "customer support representative"
+    };
+   const result = await client.users.update(payload);
 ```
 
 #### [Get by unique argument](https://docs.glassix.com/reference/get-by-unique-argument):
 ```javascript
-const uniqueArgument= {uniqueArgument:"John Doe's unique argument"};
-const user= await client.users.getByUniqueArgument(uniqueArgument);
+const uniqueArgument = {
+    uniqueArgument: "John Doe's unique argument"
+};
+const user = await client.users.getByUniqueArgument(uniqueArgument);
 ```
 
 #### [Set roles](https://docs.glassix.com/reference/set-roles):
 ```javascript
-const userName= {userName:"john.doe@gmail.com"};
-const roles= ["DepartmentAdmin", "SystemUser"];
+const userName = {
+    userName: "john.doe@gmail.com"
+};
+const roles = ["DepartmentAdmin", "SystemUser"];
 const result= await client.users.setRoles(roles, userName);
 ```
 
@@ -261,8 +281,11 @@ const result= await client.users.setRoles(roles, userName);
 
 #### [Is online](https://docs.glassix.com/reference/is-online):
 ```javascript
- const parameters= {departmentId:"YOUR_API_KEY", protocolType:"Mail"};
- const result= await client.tenants.isOnline(parameters);
+const parameters = {
+    departmentId: "YOUR_API_KEY", 
+    protocolType: "Mail"
+};
+const result = await client.tenants.isOnline(parameters);
 ```
 
 #### [Get tags](https://docs.glassix.com/reference/get-tags):
@@ -279,26 +302,36 @@ const contact= await client.contacts.get(contactId);
 
 #### [Set name](https://docs.glassix.com/reference/set-name):
 ```javascript
- const payload= {nextName: "Jane Doe"}; 
- const result= await client.contacts.setName(contactId, payload);
+const payload = {
+    nextName: "Jane Doe"
+};
+const result= await client.contacts.setName(contactId, payload);
 ```
 
 #### [Add identifier](https://docs.glassix.com/reference/add-identifier):
 ```javascript
- const payload= {forceMerge: false, identifierType:"MailAddress", identifier:"jane.doe@gmail.com"}; 
- const result= await client.contacts.addIdentifier(contactId, payload);
+const payload = {
+    forceMerge: false, 
+    identifierType: "MailAddress", 
+    identifier: "jane.doe@gmail.com"
+};
+const result= await client.contacts.addIdentifier(contactId, payload);
 ```
 
 #### [Set unique argument](https://docs.glassix.com/reference/set-contact-unique-argument):
 
 ```javascript
-const payload = {nextUniqueArgument: "Jane Doe's unique argument"};
+const payload = {
+    nextUniqueArgument: "Jane Doe's unique argument"
+};
 const result = await client.contacts.setUniqueArgument(contactId, payload);
 ```
 
 #### [Delete identifier](https://docs.glassix.com/reference/delete-identifier):
 ```javascript
-const params = {contactIdentifierId:1};
+const params = {
+    contactIdentifierId: 1
+};
 const result = await client.contacts.deleteIdentifier(contactId, params);
 ```
 
@@ -314,14 +347,14 @@ const cannedReplies = await client.cannedReplies.getAll();
 
 #### [Send](https://docs.glassix.com/reference/send-interactive-document):
 ```javascript
-const payload ={
+const payload = {
     shouldLockDocument: false,
-    baseTemplateId: 43,
+    baseTemplateId: 20,
     message: "Please enter your full name in the document.",
     fields: [
         {
-          type: "Text",
-          name: "fullName_1"
+             type: "Text",
+             name: "fullName_1"
         }
     ]
 };
@@ -345,23 +378,30 @@ const result = await client.protocols.send(payload);
 
 #### [Started](https://docs.glassix.com/reference/send-interactive-document):
 ```javascript
-const payload = {dateTime: "24/12/2020 11:20:00:22"};
+const payload = {
+    dateTime: "24/12/2020 11:20:00:22"
+};
 const result = await client.phoneCalls.started(ticketId, payload);
 ```
 
 #### [Ended](https://docs.glassix.com/reference/call-ended):
 ```javascript
-const payload = {dateTime: "24/12/2020 11:25:00:22"};
+const payload = {
+    dateTime: "24/12/2020 11:25:00:22"
+};
 const result = await client.phoneCalls.ended(ticketId, payload);
 ```
 
 #### [Audio Link](https://docs.glassix.com/reference/call-audio-link):
 ```javascript
-const payload = {audioUri: "https://file-examples-com.github.io/uploads/2017/11/file_example_OOG_1MG.ogg"};
+const payload = {
+    audioUri: "https://file-examples-com.github.io/uploads/2017/11/file_example_OOG_1MG.ogg"
+};
 const result = await client.phoneCalls.audioLink(ticketId, payload);
 ```
 
-### [Get Token](https://docs.glassix.com/reference/access-token):
+### Token:
+### [Get](https://docs.glassix.com/reference/access-token):
 ```javascript
 const userName = 'john.doe@gmail.com';
 const result = await client.getToken(userName);
