@@ -401,7 +401,7 @@ const result = await client.phoneCalls.audioLink(ticketId, payload);
 ```
 
 ### Token:
-### [Get](https://docs.glassix.com/reference/access-token):
+#### [Get](https://docs.glassix.com/reference/access-token):
 ```javascript
 const userName = "john.doe@gmail.com";
 const result = await client.getToken(userName);
