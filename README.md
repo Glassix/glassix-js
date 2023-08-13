@@ -258,7 +258,7 @@ const payload = {
         fullName: "John Doe",
         jobTitle: "customer support representative"
     };
-   const result = await client.users.update(payload);
+const result = await client.users.update(payload);
 ```
 
 #### [Get by unique argument](https://docs.glassix.com/reference/get-by-unique-argument):
@@ -275,7 +275,7 @@ const userName = {
     userName: "john.doe@gmail.com"
 };
 const roles = ["DepartmentAdmin", "SystemUser"];
-const result= await client.users.setRoles(roles, userName);
+const result = await client.users.setRoles(roles, userName);
 ```
 
 ### Tenants:
@@ -298,7 +298,7 @@ const tags = await client.tenants.getTags();
 
 #### [Get](https://docs.glassix.com/reference/get-contacts):
 ```javascript
-const contact= await client.contacts.get(contactId);
+const contact = await client.contacts.get(contactId);
 ```
 
 #### [Set name](https://docs.glassix.com/reference/set-name):
@@ -306,7 +306,7 @@ const contact= await client.contacts.get(contactId);
 const payload = {
     nextName: "Jane Doe"
 };
-const result= await client.contacts.setName(contactId, payload);
+const result = await client.contacts.setName(contactId, payload);
 ```
 
 #### [Add identifier](https://docs.glassix.com/reference/add-identifier):
@@ -316,7 +316,7 @@ const payload = {
     identifierType: "MailAddress", 
     identifier: "jane.doe@gmail.com"
 };
-const result= await client.contacts.addIdentifier(contactId, payload);
+const result = await client.contacts.addIdentifier(contactId, payload);
 ```
 
 #### [Set unique argument](https://docs.glassix.com/reference/set-contact-unique-argument):
@@ -404,7 +404,7 @@ const result = await client.phoneCalls.audioLink(ticketId, payload);
 ### Token:
 ### [Get](https://docs.glassix.com/reference/access-token):
 ```javascript
-const userName = 'john.doe@gmail.com';
+const userName = "john.doe@gmail.com";
 const result = await client.getToken(userName);
 ```
 
