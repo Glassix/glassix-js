@@ -35,7 +35,7 @@ const clientOptions = {
     apiSecret: process.env.API_SECRET,
     // a user with access to your department, preferably an API user
     userName: process.env.USER_NAME,
-    //Your glassix domain
+    // Your glassix domain
     domain: process.env.DOMAIN
 };
 const client = new glassix(clientOptions);
