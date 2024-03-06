@@ -6,8 +6,8 @@ on:
 permissions:
   contents: write
 env:
-  GIT_USERNAME: 'yoad-rashty'
-  GIT_EMAIL: 'yoad-rashty@users.noreply.github.com'
+  git_username: 'yoad-rashty'
+  git_email: 'yoad-rashty@users.noreply.github.com'
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -19,8 +19,8 @@ jobs:
         with:
             node-version: 12
             registry-url: https://registry.npmjs.org
-      - run: git config --global user.email "${{ inputs.git_email }}"
-      - run: git config --global user.name "${{ inputs.git_username }}"
+      - run: git config --global user.email "$git_email"
+      - run: git config --global user.name "$git_username"
       - run: 'npm version patch'
         env:
           GH_RELEASE_GITHUB_API_TOKEN: ${{secrets.NPM_BUMP_ACTOR_TOKEN}}
