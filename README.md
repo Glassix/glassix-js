@@ -39,6 +39,7 @@ const clientOptions = {
 const client = new glassix(clientOptions);
 ```
 
+
 ## Methods:
 
 ### Tickets:
