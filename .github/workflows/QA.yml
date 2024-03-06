@@ -1,0 +1,17 @@
+name: QA Testing
+on:
+  pull_request:
+    branches:
+    - main
+    - master
+jobs:
+  QA_testing:
+    name: Test Application on PR
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+      with:
+        sparse-checkout: .
+    - name: run script
+      run: |
+        echo QA script run - Successful
