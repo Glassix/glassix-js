@@ -5,6 +5,9 @@ on:
       - main
 permissions:
   contents: write
+env:
+  GIT_USERNAME: 'yoad-rashty'
+  GIT_EMAIL: 'yoad-rashty@users.noreply.github.com'
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -16,20 +19,23 @@ jobs:
         with:
             node-version: 12
             registry-url: https://registry.npmjs.org
-      - name: Update NPM version and Publish to npmjs.org
-        uses: bcomnes/npm-bump@v2.2.1
-        with:
-          # The email address used to create the version commit with.
-          git_email: 'yoad-rashty@users.noreply.github.com'
-          # The name to use for the version commit. e.g. github.actor
-          git_username: 'yoad-rashty'
-          # The version bump type to perform (e.g. major, minor, patch). See npm version docs for more info.  Pass this as an interactive variable.
-          newversion: 'patch'
-          # Run git push --follow-tags after running npm version.  Enable this if you dont configure a prepublishOnly hook that pushes git commits.
+      - run: git config --global user.email "${{ inputs.git_email }}"
+      - run: git config --global user.name "${{ inputs.git_username }}"
+      - run: 'npm version patch'
+        env:
+          GH_RELEASE_GITHUB_API_TOKEN: ${{secrets.NPM_BUMP_ACTOR_TOKEN}}
+      - run: echo "release-tag=$(git describe --tags)" >> $GITHUB_OUTPUT
+        id: release-tag-retriever
+      - run: |
+          if [ $push_version_commit = "true" ]; then
+            git push --follow-tags
+          else
+            echo "Skipping git push --follow-tags"
+          fi
+        env:
+          GH_TOKEN: ${{ inputs.github_token }}
           push_version_commit: true
-          # The command to run after npm version.  Useful if you are just using npm to version a package, but not publish to npm (like an action).
-          publish_cmd: 'npm i && npm run prepublish && npm publish --access public'
-          # Pass the secrets.GITHUB_TOKEN to enable gh-release capabilities.
-          github_token: ${{secrets.NPM_BUMP_ACTOR_TOKEN}}
-          # An npm token scoped for publishing.  Used to create the release.
-          npm_token: ${{secrets.NPM_AUTH_TOKEN}}
+      - run: 'npm i && npm run prepublish && npm publish --access public'
+        env:
+          GH_RELEASE_GITHUB_API_TOKEN: ${{secrets.NPM_BUMP_ACTOR_TOKEN}}
+          NODE_AUTH_TOKEN: ${{secrets.NPM_AUTH_TOKEN}
