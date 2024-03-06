@@ -14,6 +14,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@master
+        with:
+          token: ${{secrets.NPM_BUMP_ACTOR_TOKEN}}
       - name: node
         uses: actions/setup-node@v2
         with:
@@ -28,8 +30,7 @@ jobs:
         id: release-tag-retriever
       - run: |
           if [ $push_version_commit = "true" ]; then
-          git push https://raraku:$GH_TOKEN@github.com/Glassix/glassix-js.git \
-             --follow-tags --force
+          git push --follow-tags
           else
             echo "Skipping git push --follow-tags"
           fi
