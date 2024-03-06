@@ -30,7 +30,7 @@ jobs:
         id: release-tag-retriever
       - run: |
           if [ $push_version_commit = "true" ]; then
-          git push --follow-tags
+            git push --follow-tags
           else
             echo "Skipping git push --follow-tags"
           fi
