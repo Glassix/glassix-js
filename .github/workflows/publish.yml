@@ -28,8 +28,8 @@ jobs:
         id: release-tag-retriever
       - run: |
           if [ $push_version_commit = "true" ]; then
-          git push https://raraku:$GH_TOKEN@github.com/glassix/glassix-js.git \
-             --follow-tags
+          git push https://raraku:$GH_TOKEN@github.com/Glassix/glassix-js.git \
+             --follow-tags --force
           else
             echo "Skipping git push --follow-tags"
           fi
