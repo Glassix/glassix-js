@@ -30,7 +30,7 @@ jobs:
           if [ $push_version_commit = "true" ]; then
           git -c credential.helper= \
               -c credential.helper='!f() { echo username=raraku; echo "password=$GIT_TOKEN"; };f' \
-              git push --follow-tags
+              push --follow-tags
           else
             echo "Skipping git push --follow-tags"
           fi
