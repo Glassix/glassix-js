@@ -4,7 +4,7 @@ Official JavaScript client library of the [Glassix REST API](https://docs.glassi
 [![NPM version](https://badgen.net/npm/v/glassix)](https://www.npmjs.com/package/glassix)
 [![NPM downloads](https://badgen.net/npm/dm/glassix?v)](https://www.npmjs.com/package/glassix)
 
-## Installation:
+## Installation: 
 
 [NPM](https://www.npmjs.com/package/glassix):
 
