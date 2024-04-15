@@ -1,3 +1,4 @@
+
 import axios from 'axios';
 import catchError from '../helpers/catchError';
 
@@ -40,7 +41,7 @@ export const getTicketsList = async (ctx, params = {}) => {
       else
       {
         // pagination
-        res = await axios.get(nextRequestUrl, { headers, params });
+        res = await axios.get(nextRequestUrl, { headers });
       }
 
       console.log(nextRequestUrl);
