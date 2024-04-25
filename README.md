@@ -399,6 +399,22 @@ const payload = {
 const result = await client.phoneCalls.audioLink(ticketId, payload);
 ```
 
+### Files:
+#### [Upload](https://docs.glassix.com/reference/file-upload):
+```javascript
+const payload = new FormData();
+
+const response = await fetch('https://example.com/some-file.txt');
+const blob = await response.blob();
+
+const file = new File([blob], "downloaded_example.txt", {
+	type: "text/plain",
+});
+
+payload.append(0, file);
+const result = await client.files.upload(payload);
+```
+
 ### Token:
 #### [Get](https://docs.glassix.com/reference/access-token):
 ```javascript
