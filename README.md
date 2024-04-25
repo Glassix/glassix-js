@@ -404,9 +404,11 @@ const result = await client.phoneCalls.audioLink(ticketId, payload);
 ```javascript
 const payload = new FormData();
 
-const blob = new Blob(["Hello, world!"], { type: 'text/plain' });
-const file = new File([blob], "example.txt", {
-    type: "text/plain",
+const response = await fetch(url);
+const blob = await response.blob();
+
+const file = new File([blob], "downloaded_example.txt", {
+	type: "text/plain",
 });
 
 payload.append(0, file);
