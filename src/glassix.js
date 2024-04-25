@@ -42,6 +42,7 @@ import getAllCannedReplies from './API/cannedReplies';
 import sendInteractiveDocument from './API/interactiveDocuments';
 import sendProtocol from './API/protocols';
 import { audioLinkPhoneCall, endedPhoneCall, startedPhoneCall } from './API/phoneCalls';
+import { upload } from './API/files';
 import catchError from './helpers/catchError';
 
 class glassix {
@@ -178,6 +179,14 @@ class glassix {
       started: (ticketId, payload) => startedPhoneCall(self, ticketId, payload),
       ended: (ticketId, payload) => endedPhoneCall(self, ticketId, payload),
       audioLink: (ticketId, payload) => audioLinkPhoneCall(self, ticketId, payload),
+    };
+  }
+
+  // FILES ENDPOINTS
+  get files() {
+    const self = this;
+    return {
+      upload: (payload) => upload(self, payload)
     };
   }
 }
