@@ -42,7 +42,7 @@ import getAllCannedReplies from './API/cannedReplies';
 import sendInteractiveDocument from './API/interactiveDocuments';
 import sendProtocol from './API/protocols';
 import { audioLinkPhoneCall, endedPhoneCall, startedPhoneCall } from './API/phoneCalls';
-import { upload } from './API/files';
+import upload from './API/files';
 import catchError from './helpers/catchError';
 
 class glassix {
@@ -186,7 +186,7 @@ class glassix {
   get files() {
     const self = this;
     return {
-      upload: (payload) => upload(self, payload)
+      upload: payload => upload(self, payload)
     };
   }
 }
