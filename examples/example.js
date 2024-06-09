@@ -18,14 +18,9 @@ const test = async () => {
 
     const client = new glassix(clientOptions);
 
-    let myData = {
-        since: '06/06/2024 00:00:00:00',
-        until: '06/06/2024 23:59:59:00'
-    };
-    const retVal = await client.tickets.list(myData);
-
+    let ticketId = 53001859;
     return;
-
+   
     // create ticket
     let payload = {
         participants: [
