@@ -78,17 +78,14 @@ class glassix {
 
   // eslint-disable-next-line class-methods-use-this
   async getRequestHeaders(ctx) {
-
-    let headers = Object.assign({}, ctx?.headers);
-
+    const headers = Object.assign({}, ctx?.headers);
     let token = ctx?.accessTokenData?.access_token;
     if (!token || !ctx.tokenExpirationDate || (ctx.tokenExpirationDate <= Date.now())) {
       const { access_token } = await ctx.getToken();
       token = access_token;
     }
 
-    headers["Authorization"] = `Bearer ${token}`;
-
+    headers.Authorization = `Bearer ${token}`;
     return headers;
   }
 
