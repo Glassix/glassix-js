@@ -13,9 +13,7 @@ const test = async () => {
         workspace: process.env.WORKSPACE,
         apiKey: process.env.API_KEY,
         apiSecret: process.env.API_SECRET,
-        userName: process.env.USER_NAME,
-        headers: { "X-QA-Automation-Token": process.env.AUTOMATION_TOKEN},
-        domain: process.env.DEV_DOMAIN
+        userName: process.env.USER_NAME
     };
 
     const client = new glassix(clientOptions);
