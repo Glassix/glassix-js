@@ -8,38 +8,47 @@ const glassix = require('glassix');
 // Run in terminal: npm run test:examples
 
 console.log("Runing example.js");
-
-const test = async ()=> {
+const test = async () => {
     const clientOptions = {
         workspace: process.env.WORKSPACE,
         apiKey: process.env.API_KEY,
         apiSecret: process.env.API_SECRET,
-        userName: process.env.USER_NAME
+        userName: process.env.USER_NAME,
+        headers: { "X-QA-Automation-Token": process.env.AUTOMATION_TOKEN,
+                   "X-Test-Vered": "test45678990" },
+        domain: process.env.DEV_DOMAIN
     };
+
     const client = new glassix(clientOptions);
 
-    let ticketId = 53001859;
+    let myData = {
+        since: '06/06/2024 00:00:00:00',
+        until: '06/06/2024 23:59:59:00'
+    };
+    const retVal = await client.tickets.list(myData);
+
     return;
+
     // create ticket
     let payload = {
         participants: [
-          {
-            type: "Client",
-            protocolType: "Mail",
-            subProtocolType: "MailTo",
-            name: "David Gilmour",
-            identifier: "david.gilmour@gmail.com"
-          }
+            {
+                type: "Client",
+                protocolType: "Mail",
+                subProtocolType: "MailTo",
+                name: "David Gilmour",
+                identifier: "david.gilmour@gmail.com"
+            }
         ],
         tags: [
-          "Info"
+            "Info"
         ]
-      };
+    };
     let newTicket = await client.tickets.create(payload);
 
     // get ticket
     let ticket = await client.tickets.get(newTicket.id);
-    
+
     // update ticket's tags
     const newTags = ['Sales'];
     const nextTags = await client.tickets.addTags(ticket.id, newTags);
@@ -65,7 +74,7 @@ const test = async ()=> {
             source: {
                 title: "My Landing Page",
                 uri: "https://www.example.com/landing-page"
-            }   
+            }
         }
     };
     const result2 = await client.tickets.setFields(ticket.id, fieldsPayload);
@@ -80,7 +89,7 @@ const test = async ()=> {
     const setNamePayload = {
         id: 1,
         name: "Brenda Rahman"
-     };
+    };
     const result4 = await client.tickets.setParticipantName(ticketId, setNamePayload);
 
     // set ticket owner
