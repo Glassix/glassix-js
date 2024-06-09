@@ -57,6 +57,7 @@ class glassix {
     this.url = `${protocol}://${this.workspace}.${this.domain}/api/${this.apiVersion}`;
     this.accessTokenData = {};
     this.tokenExpirationDate = null;
+    this.headers = clientOptions.headers ? clientOptions.headers : {};
   }
 
   async getToken(userName) {
@@ -77,13 +78,17 @@ class glassix {
 
   // eslint-disable-next-line class-methods-use-this
   async getRequestHeaders(ctx) {
-    const headers = {};
+
+    let headers = Object.assign({}, ctx?.headers);
+
     let token = ctx?.accessTokenData?.access_token;
     if (!token || !ctx.tokenExpirationDate || (ctx.tokenExpirationDate <= Date.now())) {
       const { access_token } = await ctx.getToken();
       token = access_token;
     }
-    headers.Authorization = `Bearer ${token}`;
+
+    headers["Authorization"] = `Bearer ${token}`;
+
     return headers;
   }
 
