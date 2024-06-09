@@ -14,8 +14,7 @@ const test = async () => {
         apiKey: process.env.API_KEY,
         apiSecret: process.env.API_SECRET,
         userName: process.env.USER_NAME,
-        headers: { "X-QA-Automation-Token": process.env.AUTOMATION_TOKEN,
-                   "X-Test-Vered": "test45678990" },
+        headers: { "X-QA-Automation-Token": process.env.AUTOMATION_TOKEN},
         domain: process.env.DEV_DOMAIN
     };
 
