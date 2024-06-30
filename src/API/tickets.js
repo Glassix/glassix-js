@@ -30,16 +30,13 @@ export const getTicketsList = async (ctx, params = {}) => {
 
     let count = 0;
     let nextRequestUrl = null;
-    do
-    {
+    do {
       let res = null;
-      if (count === 0)
-      {
+      if (count === 0) {
         // first request
         res = await axios.get(`${ctx.url}/tickets/list`, { headers, params });
       }
-      else
-      {
+      else {
         // pagination
         res = await axios.get(nextRequestUrl, { headers });
       }
@@ -48,8 +45,7 @@ export const getTicketsList = async (ctx, params = {}) => {
       count += 1;
 
       // Aggregate the response tickets
-      if (res?.data?.tickets && res?.data?.tickets.length)
-      {
+      if (res?.data?.tickets && res?.data?.tickets.length) {
         console.warn(res?.data?.tickets.length);
         tickets = tickets.concat(res?.data?.tickets);
       }
@@ -75,10 +71,27 @@ export const sendTicket = async (ctx, ticketId, payload = {}) => {
   }
 };
 
-export const setTicketState = async (ctx, ticketId, params = {}) => {
+export const setTicketState = async (ctx, ticketId, payload = {}) => {
   try {
     const headers = await ctx.getRequestHeaders(ctx);
-    const res = await axios.put(`${ctx.url}/tickets/setstate/${ticketId}`, {}, { headers, params });
+    let queryParams = {};
+    if (Object.keys(payload).length > 0) {
+      Object.keys(payload).forEach(key => {
+        switch (key) {
+          case "nextState":
+          case "sendTicketStateChangedMessage":
+          case "getTicket":
+          case "enableWebhook":
+          case "enableAssignQueuedTickets":
+            queryParams[key] = payload[key];
+            delete payload[key];
+            break;
+        }
+      });
+    }
+    let queryString = new URLSearchParams(queryParams).toString();
+
+    const res = await axios.put(`${ctx.url}/tickets/setstate/${ticketId}?${queryString}`, payload, { headers: headers });
     return res?.data;
   } catch (error) {
     return catchError(error);
