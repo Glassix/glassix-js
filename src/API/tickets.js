@@ -82,7 +82,6 @@ export const setTicketState = async (ctx, ticketId, payload = {}) => {
           case "sendTicketStateChangedMessage":
           case "getTicket":
           case "enableWebhook":
-          case "enableAssignQueuedTickets":
             queryParams[key] = payload[key];
             delete payload[key];
             break;
