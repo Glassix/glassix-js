@@ -74,23 +74,25 @@ export const sendTicket = async (ctx, ticketId, payload = {}) => {
 export const setTicketState = async (ctx, ticketId, payload = {}) => {
   try {
     const headers = await ctx.getRequestHeaders(ctx);
-    let queryParams = {};
+    const queryParams = {};
+    const bodyParams = {};
     if (Object.keys(payload).length > 0) {
-      Object.keys(payload).forEach(key => {
+      Object.keys(payload).forEach((key) => {
         switch (key) {
-          case "nextState":
-          case "sendTicketStateChangedMessage":
-          case "getTicket":
-          case "enableWebhook":
+          case 'nextState':
+          case 'sendTicketStateChangedMessage':
+          case 'getTicket':
+          case 'enableWebhook':
             queryParams[key] = payload[key];
-            delete payload[key];
             break;
+          default:
+            bodyParams[key] = payload[key];
         }
       });
     }
-    let queryString = new URLSearchParams(queryParams).toString();
+    const queryString = new URLSearchParams(queryParams).toString();
 
-    const res = await axios.put(`${ctx.url}/tickets/setstate/${ticketId}?${queryString}`, payload, { headers: headers });
+    const res = await axios.put(`${ctx.url}/tickets/setstate/${ticketId}?${queryString}`, bodyParams, { headers });
     return res?.data;
   } catch (error) {
     return catchError(error);
