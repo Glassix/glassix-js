@@ -193,13 +193,13 @@ class glassix {
     };
   }
 
-     // WEBHOOKS ENDPOINTS
-     get webhooks() {
-      const self = this;
-      return {
-        getAll: () => getEvents(self, payload),
-      };
-    }
+  // WEBHOOKS ENDPOINTS
+  get webhooks() {
+    const self = this;
+    return {
+      getAll: () => getEvents(self, payload),
+    };
+  }
 }
 
 export default glassix;
