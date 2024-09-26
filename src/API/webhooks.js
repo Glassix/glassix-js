@@ -1,16 +1,14 @@
 import axios from 'axios';
 import catchError from '../helpers/catchError';
 
-
-export const getEvents = async (ctx, payload) => {
+const getEvents = async (ctx, payload) => {
     try {
         const headers = await ctx.getRequestHeaders(ctx);
+        const queryParams = {};
         if (Object.keys(payload).length > 0) {
             Object.keys(payload).forEach((key) => {
-                switch (key) {
-                    case 'deleteEvents':
-                        queryParams[key] = payload[key];
-                        break;
+                if (key === 'deleteEvents') {
+                    queryParams[key] = payload[key];
                 }
             });
         }
@@ -21,3 +19,5 @@ export const getEvents = async (ctx, payload) => {
         return catchError(error);
     }
 };
+
+export default getEvents;
