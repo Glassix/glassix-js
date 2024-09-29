@@ -42,7 +42,7 @@ import getAllCannedReplies from './API/cannedReplies';
 import sendInteractiveDocument from './API/interactiveDocuments';
 import sendProtocol from './API/protocols';
 import { audioLinkPhoneCall, endedPhoneCall, startedPhoneCall } from './API/phoneCalls';
-import getEvents from './API/webhooks';
+import getevents from './API/webhooks';
 import upload from './API/files';
 import catchError from './helpers/catchError';
 
@@ -192,12 +192,13 @@ class glassix {
       upload: payload => upload(self, payload)
     };
   }
-
+  
   // PROTOCOLS ENDPOINTS
   get webhooks() {
     const self = this;
+    console.log(self);
     return {
-      getevents: payload => getEvents(self, payload),
+      getevents: payload => getevents(self, payload)
     };
   }
 }

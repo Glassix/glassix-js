@@ -1,7 +1,7 @@
 import axios from 'axios';
 import catchError from '../helpers/catchError';
 
-const getEvents = async (ctx, payload = {}) => {
+const getevents = async (ctx, payload = {}) => {
   try {
     const headers = await ctx.getRequestHeaders(ctx);
     const queryParams = {};
@@ -20,4 +20,4 @@ const getEvents = async (ctx, payload = {}) => {
   }
 };
 
-export default getEvents;
+export default getevents;
