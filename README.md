@@ -422,6 +422,14 @@ const userName = "john.doe@gmail.com";
 const result = await client.getToken(userName);
 ```
 
+### Events:
+#### [Get Events](https://docs.glassix.com/reference/get-events):
+```javascript
+  const payload = {
+      deleteEvent: "false"
+  };
+  const result = await client.webhooks.getevents(payload);
+```
 ## License
 
 Apache-2.0

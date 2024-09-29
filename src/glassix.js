@@ -197,7 +197,7 @@ class glassix {
   get webhooks() {
     const self = this;
     return {
-      get: payload => getEvents(self, payload),
+      getevents: payload => getEvents(self, payload),
     };
   }
 }
