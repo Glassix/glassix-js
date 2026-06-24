@@ -38,7 +38,11 @@ import {
   setContactUniqueArgument,
   deleteContactIdentifier,
 } from './API/contacts';
-import getAllCannedReplies from './API/cannedReplies';
+import {
+  getAllCannedReplies,
+  addCannedReply,
+  deleteCannedReply
+} from './API/cannedReplies';
 import sendInteractiveDocument from './API/interactiveDocuments';
 import sendProtocol from './API/protocols';
 import { audioLinkPhoneCall, endedPhoneCall, startedPhoneCall } from './API/phoneCalls';
@@ -156,6 +160,8 @@ class glassix {
     const self = this;
     return {
       getAll: () => getAllCannedReplies(self),
+      add: payload => addCannedReply(self, payload),
+      delete: params => deleteCannedReply(self, params),
     };
   }
 
@@ -192,7 +198,7 @@ class glassix {
       upload: payload => upload(self, payload)
     };
   }
-  
+
   // PROTOCOLS ENDPOINTS
   get webhooks() {
     const self = this;

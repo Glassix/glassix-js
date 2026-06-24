@@ -4,7 +4,7 @@ Official JavaScript client library of the [Glassix REST API](https://docs.glassi
 [![NPM version](https://badgen.net/npm/v/glassix)](https://www.npmjs.com/package/glassix)
 [![NPM downloads](https://badgen.net/npm/dm/glassix?v)](https://www.npmjs.com/package/glassix)
 
-## Installation: 
+## Installation:
 
 [NPM](https://www.npmjs.com/package/glassix):
 
@@ -105,7 +105,7 @@ let payload = {
         source: {
             title: "My Landing Page",
             uri: "https://www.example.com/landing-page"
-        }   
+        }
     }
 };
 const result = await client.tickets.setFields(ticketId, payload);
@@ -212,7 +212,7 @@ const payload = {
 };
 const result = await client.users.setStatus(payload);
   ```
-  
+
 #### [Get status](https://docs.glassix.com/reference/get-status):
 ```javascript
 const status = await client.users.getStatus();
@@ -222,11 +222,11 @@ const status = await client.users.getStatus();
 
 ```javascript
 const params = {
-    role: "SystemUser", 
+    role: "SystemUser",
     userType: "AGENT"
 };
 const payload = [{
-    uniqueArgument: "exampleValue", 
+    uniqueArgument: "exampleValue",
     userName: "john.doe@gmail.com"
 }];
 const result = await client.users.add(payload, params);
@@ -281,7 +281,7 @@ const result = await client.users.setRoles(roles, userName);
 #### [Is online](https://docs.glassix.com/reference/is-online):
 ```javascript
 const parameters = {
-    departmentId: "YOUR_API_KEY", 
+    departmentId: "YOUR_API_KEY",
     protocolType: "Mail"
 };
 const result = await client.tenants.isOnline(parameters);
@@ -310,8 +310,8 @@ const result = await client.contacts.setName(contactId, payload);
 #### [Add identifier](https://docs.glassix.com/reference/add-identifier):
 ```javascript
 const payload = {
-    forceMerge: false, 
-    identifierType: "MailAddress", 
+    forceMerge: false,
+    identifierType: "MailAddress",
     identifier: "jane.doe@gmail.com"
 };
 const result = await client.contacts.addIdentifier(contactId, payload);
@@ -340,6 +340,30 @@ const result = await client.contacts.deleteIdentifier(contactId, params);
 
 ```javascript
 const cannedReplies = await client.cannedReplies.getAll();
+```
+#### [Add](https://docs.glassix.com/reference/add-canned-replies):
+
+```javascript
+const payload = {
+	id: 0,
+	title: "Your canned reply name",
+	text: "Your canned reply text",
+	html: "Your canned reply html",
+	rank: 0,
+	autoTags: ["tag1"],
+	categoryName: "category1",
+	culture: "en-US",
+	isPublished: true,
+	isSuggested: true,
+	isIncludedInAgentSuggestions: true,
+	attachments: [{}],
+};
+const cannedReplies = await client.cannedReplies.add(payload);
+```
+#### [Delete](https://docs.glassix.com/reference/delete-canned-replies):
+
+```javascript
+await client.cannedReplies.delete(cannedReplyId);
 ```
 
 ### Interactive documents:
