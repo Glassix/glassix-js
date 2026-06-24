@@ -12,10 +12,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@master
-        with:
-          token: ${{secrets.NPM_BUMP_ACTOR_TOKEN}}
+      - uses: actions/checkout@v4
       - name: node
         uses: actions/setup-node@v2
         with:
