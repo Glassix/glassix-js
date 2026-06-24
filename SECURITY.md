@@ -19,6 +19,6 @@ We request that you not publicly disclose the issue until it has been addressed 
 
 Security updates will be released as patches to the current version and as minor updates to all supported versions. We will provide detailed release notes for each security update.
 
-## Public Disclosure Timing
+## Public Disclosure Timing 
 
 The timing of the public disclosure will be negotiated with the reporter. We prefer to fully disclose the issue as soon as possible after the vulnerability has been fixed, but understand the need to delay disclosure to protect users.
